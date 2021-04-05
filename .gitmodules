@@ -1,0 +1,3 @@
+[submodule "src/qtm-calc"]
+	path = src/qtm-calc
+	url = https://github.com/Andinoriel/qtm-calc.git
