@@ -38,6 +38,8 @@ set(PROJECT_SOURCES
 
         src/controllers/cpp/mainwindow.cpp
 
+        src/view/mainwindow.ui
+
         ${TS_FILES}
 )
 
