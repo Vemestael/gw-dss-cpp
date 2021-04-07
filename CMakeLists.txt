@@ -24,8 +24,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Sql REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Sql REQUIRED)
 
 set(TS_FILES src/translation/gw-dss-cpp_en_US.ts)
 
@@ -35,8 +35,10 @@ set(PROJECT_SOURCES
         src/main.cpp
 
         src/controllers/hpp/mainwindow.h
+        src/analysis/hpp/dbapi.h
 
         src/controllers/cpp/mainwindow.cpp
+        src/analysis/cpp/dbapi.cpp
 
         src/view/mainwindow.ui
 
@@ -63,4 +65,4 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(gw-dss-cpp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(gw-dss-cpp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
