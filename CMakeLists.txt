@@ -36,9 +36,11 @@ set(PROJECT_SOURCES
 
         src/controllers/hpp/mainwindow.h
         src/analysis/hpp/dbapi.h
+        src/analysis/hpp/dataprocessing.h
 
         src/controllers/cpp/mainwindow.cpp
         src/analysis/cpp/dbapi.cpp
+        src/analysis/cpp/dataprocessing.cpp
 
         src/view/mainwindow.ui
 

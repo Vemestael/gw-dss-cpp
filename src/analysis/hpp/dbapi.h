@@ -19,7 +19,7 @@ public:
     void closeDataBase(void);
     QDate getFirstDate(void);
     QDate getLastDate(void);
-    QList<QList<int>> getCallsInfoByDate(QDate dateStart, QDate dateEnd);
+    QList<QList<double>> getCallsInfoByDate(QDate dateStart, QDate dateEnd);
 private:
     QSqlDatabase db;
 };

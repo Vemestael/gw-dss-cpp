@@ -28,9 +28,8 @@ QDate DbApi::getLastDate(void)
     return query.value(0).toDate();
 }
 
-QList<QList<int>> DbApi::getCallsInfoByDate(QDate dateStart, QDate dateEnd)
+QList<QList<double>> DbApi::getCallsInfoByDate(QDate dateStart, QDate dateEnd)
 {
-    //    dateStart.toString("%Y-%m-%d");
     QDate firstDate = this->getFirstDate();
     QDate lastDate = this->getLastDate();
 
@@ -42,6 +41,7 @@ QList<QList<int>> DbApi::getCallsInfoByDate(QDate dateStart, QDate dateEnd)
     {
         firstDate = dateStart;
     }
+
     int daysCount = firstDate.daysTo(lastDate);
     int weekCount;
     if (daysCount % 7 == 0)
@@ -51,6 +51,7 @@ QList<QList<int>> DbApi::getCallsInfoByDate(QDate dateStart, QDate dateEnd)
     {
         weekCount = daysCount / 7 + 1;
     }
+
     QString queryText;
     queryText += "select strftime('%w', date) WeekDayNumber, ";
     queryText += "strftime('%H', date) HourNumber, ";
@@ -58,15 +59,18 @@ QList<QList<int>> DbApi::getCallsInfoByDate(QDate dateStart, QDate dateEnd)
     queryText += "from Call_table ";
     queryText += "where (date BETWEEN '" + dateStart.toString(Qt::ISODate) + "' AND '" + dateEnd.toString(Qt::ISODate) + "') ";
     queryText += "group by WeekDayNumber, HourNumber";
-    QList<QList<int>> results;
+
     QSqlQuery query;
     query.exec(queryText);
+
+    QList<QList<double>> results;
     while(query.next()){
-        QList<int> result;
-        result.append(query.value(0).toInt());
-        result.append(query.value(1).toInt());
-        result.append(query.value(2).toInt());
+        QList<double> result;
+        result.append(query.value(0).toDouble());
+        result.append(query.value(1).toDouble());
+        result.append(query.value(2).toDouble());
         results.append(result);
     }
+
     return results;
 }
