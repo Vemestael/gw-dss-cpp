@@ -27,22 +27,32 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Sql REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Sql REQUIRED)
 
-set(TS_FILES src/translation/gw-dss-cpp_en_US.ts)
+set(TS_FILES
+        src/translation/gw-dss-cpp_en_US.ts
+        src/translation/gw-dss-cpp_uk_UA.ts
+        src/translation/gw-dss-cpp_ru_RU.ts
+)
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS src/view)
 
+add_subdirectory(${PROJECT_SOURCE_DIR}/extern/qtm-calc EXCLUDE_FROM_ALL)
+
+include_directories(${PROJECT_SOURCE_DIR}/extern/qtm-calc/src)
+
 set(PROJECT_SOURCES
-        src/main.cpp
+        ${PROJECT_SOURCE_DIR}/src/main.cpp
 
-        src/controllers/hpp/mainwindow.h
-        src/analysis/hpp/dbapi.h
-        src/analysis/hpp/dataprocessing.h
+        ${PROJECT_SOURCE_DIR}/src/controllers/hpp/mainwindow.h
+        ${PROJECT_SOURCE_DIR}/src/analysis/hpp/dbapi.h
+        ${PROJECT_SOURCE_DIR}/src/analysis/hpp/dataprocessing.h
+        ${PROJECT_SOURCE_DIR}/src/analysis/hpp/predict.h
 
-        src/controllers/cpp/mainwindow.cpp
-        src/analysis/cpp/dbapi.cpp
-        src/analysis/cpp/dataprocessing.cpp
+        ${PROJECT_SOURCE_DIR}/src/controllers/cpp/mainwindow.cpp
+        ${PROJECT_SOURCE_DIR}/src/analysis/cpp/dbapi.cpp
+        ${PROJECT_SOURCE_DIR}/src/analysis/cpp/dataprocessing.cpp
+        ${PROJECT_SOURCE_DIR}/src/analysis/cpp/predict.cpp
 
-        src/view/mainwindow.ui
+        ${PROJECT_SOURCE_DIR}/src/view/mainwindow.ui
 
         ${TS_FILES}
 )
@@ -67,4 +77,4 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(gw-dss-cpp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
+target_link_libraries(gw-dss-cpp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql libqtmcalco)
