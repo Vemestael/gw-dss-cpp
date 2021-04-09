@@ -9,6 +9,6 @@
 
 QList<QList<double>> getCharacteristics(QList<int> channelCountArr, int queueCount, double la, double mu, double nu=0, double n=-1);
 
-QList<QList<QString>> getPredict(QList<int> channelCountArr, int queueCount, double la, double mu, double nu=0, double n=-1);
+QList<QList<double>> getPredict(QList<int> channelCountArr, int queueCount, double la, double mu, double nu=0, double n=-1);
 
 #endif // PREDICT_H

@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <numeric>
+
 #include <QMainWindow>
 #include <QDate>
 #include <QTableWidgetItem>
@@ -8,7 +10,13 @@
 #include <QInputDialog>
 #include <QSettings>
 #include <QTranslator>
-#include <QErrorMessage>
+#include <QString>
+#include <QVector>
+
+#include "../../analysis/hpp/dbapi.h"
+#include "../../analysis/hpp/dataprocessing.h"
+#include "../../analysis/hpp/predict.h"
+#include "verticatextdelegate.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,13 +32,15 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    DbApi db;
+    QSettings settings;
 
+    void loadSettings(void);
     void initUi(void);
     void setDate(void);
     void setTablesHeaders(void);
     void setButtonsHandling(void);
 
-private slots:
     void allTimePressed(void);
     void lastYearPressed(void);
     void lastHalfYearPressed(void);

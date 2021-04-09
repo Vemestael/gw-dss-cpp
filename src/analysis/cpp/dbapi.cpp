@@ -1,15 +1,36 @@
 #include "../hpp/dbapi.h"
 
-bool DbApi::connectToDataBase(QString path)
+void DbApi::connectToDataBase(QString path)
 {
-    this->db = QSqlDatabase::addDatabase("QSQLITE");
-    this->db.setDatabaseName(path);
-    return this->db.open();
+    if(!this->db.isOpen())
+    {
+        this->db = QSqlDatabase::addDatabase("QSQLITE");
+        this->db.setDatabaseName(path);
+        this->db.open();
+        if(!this->isValidDataBase())
+        {
+            this->closeDataBase();
+            QErrorMessage().showMessage("Invalid database");
+        }
+    }
 }
 
 void DbApi::closeDataBase(void)
 {
     this->db.close();
+}
+
+bool DbApi::isValidDataBase(void)
+{
+    return this->db.tables(QSql::Tables).contains("Call_table");
+}
+
+bool DbApi::isEmptyTable(void)
+{
+    QSqlQuery query;
+    query.exec("select count(id) from Call_table");
+    query.next();
+    return !query.value(0).toBool();
 }
 
 QDate DbApi::getFirstDate(void)

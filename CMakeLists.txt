@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.12)
 
 project(gw-dss-cpp LANGUAGES CXX)
 
@@ -37,17 +37,18 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS src/view)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/extern/qtm-calc EXCLUDE_FROM_ALL)
 
-include_directories(${PROJECT_SOURCE_DIR}/extern/qtm-calc/src)
 
 set(PROJECT_SOURCES
         ${PROJECT_SOURCE_DIR}/src/main.cpp
 
         ${PROJECT_SOURCE_DIR}/src/controllers/hpp/mainwindow.h
+        ${PROJECT_SOURCE_DIR}/src/controllers/hpp/verticatextdelegate.h
         ${PROJECT_SOURCE_DIR}/src/analysis/hpp/dbapi.h
         ${PROJECT_SOURCE_DIR}/src/analysis/hpp/dataprocessing.h
         ${PROJECT_SOURCE_DIR}/src/analysis/hpp/predict.h
 
         ${PROJECT_SOURCE_DIR}/src/controllers/cpp/mainwindow.cpp
+        ${PROJECT_SOURCE_DIR}/src/controllers/cpp/verticatextdelegate.cpp
         ${PROJECT_SOURCE_DIR}/src/analysis/cpp/dbapi.cpp
         ${PROJECT_SOURCE_DIR}/src/analysis/cpp/dataprocessing.cpp
         ${PROJECT_SOURCE_DIR}/src/analysis/cpp/predict.cpp

@@ -18,7 +18,7 @@ QList<QList<double>> getCharacteristics(QList<int> channelCountArr, int queueCou
     return characteristics;
 }
 
-QList<QList<QString>> getPredict(QList<int> channelCountArr, int queueCount, double la, double mu, double nu, double n)
+QList<QList<double>> getPredict(QList<int> channelCountArr, int queueCount, double la, double mu, double nu, double n)
 {
     QList<QList<double>> characteristics = getCharacteristics(channelCountArr, queueCount, la, mu, nu, n);
 
@@ -51,21 +51,21 @@ QList<QList<QString>> getPredict(QList<int> channelCountArr, int queueCount, dou
         }
     }
 
-    QList<QList<QString>> predict;
+    QList<QList<double>> predict;
     predict.append({
-        QString::number(channelCountArr[nMaxIndex]),
-        QString::number(nMax, 'f', 2),
-        QString::number(characteristics[1][nMaxIndex], 'f', 2),
+        double(channelCountArr[nMaxIndex]),
+        nMax,
+        characteristics[1][nMaxIndex],
     });
     predict.append({
-        QString::number(channelCountArr[optimalityCoefficientIndex]),
-        QString::number(characteristics[0][optimalityCoefficientIndex], 'f', 2),
-        QString::number(characteristics[1][optimalityCoefficientIndex], 'f', 2),
+        double(channelCountArr[optimalityCoefficientIndex]),
+        characteristics[0][optimalityCoefficientIndex],
+        characteristics[1][optimalityCoefficientIndex],
     });
     predict.append({
-        QString::number(channelCountArr[lMinIndex]),
-        QString::number(characteristics[0][lMinIndex], 'f', 2),
-        QString::number(lMin, 'f', 2),
+        double(channelCountArr[lMinIndex]),
+        characteristics[0][lMinIndex],
+        lMin,
     });
 
     return predict;

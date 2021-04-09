@@ -5,7 +5,7 @@ QList<QList<double>> getCountOfCallsByShift(QList<QList<double>> inputData)
     QList<QList<double>> days;
     double shift = 0;
     QList<double> shift_avg;
-    for (size_t i = 1; i < inputData.length(); i++)
+    for (size_t i = 1; i <= inputData.length(); i++)
     {
         shift += inputData[i-1][2];
         if (i % 8 == 0)
