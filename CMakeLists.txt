@@ -28,32 +28,32 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Sql REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Sql REQUIRED)
 
 set(TS_FILES
-        src/translation/gw-dss-cpp_en_US.ts
-        src/translation/gw-dss-cpp_uk_UA.ts
-        src/translation/gw-dss-cpp_ru_RU.ts
+        ${CMAKE_CURRENT_LIST_DIR}/src/translation/gw-dss-cpp_en_US.ts
+        ${CMAKE_CURRENT_LIST_DIR}/src/translation/gw-dss-cpp_uk_UA.ts
+        ${CMAKE_CURRENT_LIST_DIR}/src/translation/gw-dss-cpp_ru_RU.ts
 )
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS src/view)
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/extern/qtm-calc EXCLUDE_FROM_ALL)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/extern/qtm-calc EXCLUDE_FROM_ALL)
 
 
 set(PROJECT_SOURCES
-        ${PROJECT_SOURCE_DIR}/src/main.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
 
-        ${PROJECT_SOURCE_DIR}/src/controllers/hpp/mainwindow.h
-        ${PROJECT_SOURCE_DIR}/src/controllers/hpp/verticatextdelegate.h
-        ${PROJECT_SOURCE_DIR}/src/analysis/hpp/dbapi.h
-        ${PROJECT_SOURCE_DIR}/src/analysis/hpp/dataprocessing.h
-        ${PROJECT_SOURCE_DIR}/src/analysis/hpp/predict.h
+        ${CMAKE_CURRENT_LIST_DIR}/src/controllers/hpp/mainwindow.h
+        ${CMAKE_CURRENT_LIST_DIR}/src/controllers/hpp/verticatextdelegate.h
+        ${CMAKE_CURRENT_LIST_DIR}/src/analysis/hpp/dbapi.h
+        ${CMAKE_CURRENT_LIST_DIR}/src/analysis/hpp/dataprocessing.h
+        ${CMAKE_CURRENT_LIST_DIR}/src/analysis/hpp/predict.h
 
-        ${PROJECT_SOURCE_DIR}/src/controllers/cpp/mainwindow.cpp
-        ${PROJECT_SOURCE_DIR}/src/controllers/cpp/verticatextdelegate.cpp
-        ${PROJECT_SOURCE_DIR}/src/analysis/cpp/dbapi.cpp
-        ${PROJECT_SOURCE_DIR}/src/analysis/cpp/dataprocessing.cpp
-        ${PROJECT_SOURCE_DIR}/src/analysis/cpp/predict.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/controllers/cpp/mainwindow.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/controllers/cpp/verticatextdelegate.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/analysis/cpp/dbapi.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/analysis/cpp/dataprocessing.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/analysis/cpp/predict.cpp
 
-        ${PROJECT_SOURCE_DIR}/src/view/mainwindow.ui
+        ${CMAKE_CURRENT_LIST_DIR}/src/view/mainwindow.ui
 
         ${TS_FILES}
 )
@@ -78,4 +78,4 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(gw-dss-cpp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql libqtmcalco)
+target_link_libraries(gw-dss-cpp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql libqtmcalc)

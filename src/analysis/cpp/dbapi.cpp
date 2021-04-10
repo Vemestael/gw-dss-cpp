@@ -10,7 +10,7 @@ void DbApi::connectToDataBase(QString path)
         if(!this->isValidDataBase())
         {
             this->closeDataBase();
-            QErrorMessage().showMessage("Invalid database");
+            QErrorMessage().showMessage(QErrorMessage::tr("Invalid database"));
         }
     }
 }

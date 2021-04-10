@@ -12,6 +12,7 @@
 #include <QTranslator>
 #include <QString>
 #include <QVector>
+#include <QLocale>
 
 #include "../../analysis/hpp/dbapi.h"
 #include "../../analysis/hpp/dataprocessing.h"

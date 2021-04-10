@@ -25,6 +25,8 @@ void MainWindow::loadSettings(void)
         path = this->settings.value("dbPath", "").toString();
     }
     db.connectToDataBase(path);
+    QString lang = this->settings.value("lang", "en").toString();
+    this->switchLangTriggered(lang);
 }
 
 void MainWindow::initUi(void)
@@ -65,24 +67,24 @@ void MainWindow::setTablesHeaders(void)
         table->setSpan(7, 0, 3, 1);
 
         // horizontal headers
-        table->setItem(0, 2, new QTableWidgetItem("Shift 1"));
-        table->setItem(0, 3, new QTableWidgetItem("Shift 2"));
-        table->setItem(0, 4, new QTableWidgetItem("Shift 3"));
+        table->setItem(0, 2, new QTableWidgetItem(tr("Shift 1")));
+        table->setItem(0, 3, new QTableWidgetItem(tr("Shift 2")));
+        table->setItem(0, 4, new QTableWidgetItem(tr("Shift 3")));
 
         if (table->objectName().contains("predict_table_"))
         {
             for (size_t i = 0; i < 10; i += 3)
             {
-                table->setItem(i + 1, 1, new QTableWidgetItem("Количество персонала"));
-                table->setItem(i + 2, 1, new QTableWidgetItem("Обработанных заявок"));
-                table->setItem(i + 3, 1, new QTableWidgetItem("Длина очереди"));
+                table->setItem(i + 1, 1, new QTableWidgetItem(tr("Number of staff")));
+                table->setItem(i + 2, 1, new QTableWidgetItem(tr("Requests processed")));
+                table->setItem(i + 3, 1, new QTableWidgetItem(tr("Queue length")));
             }
         }else
         {
             for (size_t i = 0; i < 10; i += 3)
             {
-                table->setItem(i + 1, 1, new QTableWidgetItem("Стоимость персонала"));
-                table->setItem(i + 2, 1, new QTableWidgetItem("Стоимость заявки"));
+                table->setItem(i + 1, 1, new QTableWidgetItem(tr("Personnel costs")));
+                table->setItem(i + 2, 1, new QTableWidgetItem(tr("Application cost")));
             }
         }
 
@@ -92,9 +94,9 @@ void MainWindow::setTablesHeaders(void)
             item->setText(text);
             return item;
         };
-        table->setItem(1, 0, item("Максимум заявок"));
-        table->setItem(4, 0, item("Оптимально"));
-        table->setItem(7, 0, item("Мин. очередь"));
+        table->setItem(1, 0, item(tr("Maximum applications")));
+        table->setItem(4, 0, item(tr("Optimally")));
+        table->setItem(7, 0, item(tr("Min. queue")));
 
         table->setItemDelegateForColumn(0, new verticalTextDelegate(this));
         table->setColumnWidth(0, 10);
@@ -115,16 +117,16 @@ void MainWindow::setButtonsHandling(void)
     connect(this->ui->action_cost, &QAction::triggered, this, &MainWindow::setHourlyPaymentTriggered);
     connect(this->ui->action_exit, &QAction::triggered,  qApp, qApp->quit);
 
-    connect(this->ui->en_lang, &QAction::triggered, this, [this]() {this->switchLangTriggered("en");});
-    connect(this->ui->uk_lang, &QAction::triggered, this, [this]() {this->switchLangTriggered("uk");});
-    connect(this->ui->ru_lang, &QAction::triggered, this, [this]() {this->switchLangTriggered("ru");});
+    connect(this->ui->en_lang, &QAction::triggered, this, [this]() {this->switchLangTriggered("en_US");});
+    connect(this->ui->uk_lang, &QAction::triggered, this, [this]() {this->switchLangTriggered("uk_UA");});
+    connect(this->ui->ru_lang, &QAction::triggered, this, [this]() {this->switchLangTriggered("ru_RU");});
 }
 
 void MainWindow::allTimePressed(void)
 {
     if(this->db.isEmptyTable())
     {
-        QErrorMessage().showMessage("Empty dataset");
+        QErrorMessage().showMessage(QErrorMessage::tr("Empty dataset"));
         return;
     }
     this->ui->date_start->setDate(db.getFirstDate());
@@ -153,7 +155,7 @@ void MainWindow::analyzePressed(void)
 {
     if(this->db.isEmptyTable())
     {
-        QErrorMessage().showMessage("Empty dataset");
+        QErrorMessage().showMessage(QErrorMessage::tr("Empty dataset"));
         return;
     }
     double cost = settings.value("channelCost", 0.0).toDouble();
@@ -236,13 +238,16 @@ void MainWindow::setHourlyPaymentTriggered(void)
 void MainWindow::switchLangTriggered(QString lang)
 {
     QTranslator translator;
-    if(translator.load("gw-dss_" + lang, "./translation/"))
+    if(translator.load("gw-dss-cpp_" + lang, "./translation/"))
     {
         if(qApp->installTranslator(&translator))
         {
             this->ui->retranslateUi(this);
             settings.setValue("lang", lang);
             settings.sync();
-        };
+        }else
+        {
+            QErrorMessage().showMessage("Unable to install language");
+        }
     };
 };
