@@ -238,11 +238,12 @@ void MainWindow::setHourlyPaymentTriggered(void)
 void MainWindow::switchLangTriggered(QString lang)
 {
     QTranslator translator;
-    if(translator.load("gw-dss-cpp_" + lang, "./translation/"))
+    if(translator.load("gw-dss-cpp_" + lang, "./translations/"))
     {
         if(qApp->installTranslator(&translator))
         {
             this->ui->retranslateUi(this);
+            this->setTablesHeaders();
             settings.setValue("lang", lang);
             settings.sync();
         }else
