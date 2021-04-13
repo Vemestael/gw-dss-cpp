@@ -3,8 +3,9 @@
 QVector<QVector<double>> DataProcessing::getCountOfCallsByShift(QVector<QVector<double>> inputData)
 {
     QVector<QVector<double>> days;
-    double shift = 0;
     QVector<double> shiftAvg;
+    double shift = 0;    
+
     for (size_t i = 1; i <= inputData.length(); ++i) {
         shift += inputData[i - 1][2];
         if (i % 8 == 0) {
@@ -16,5 +17,6 @@ QVector<QVector<double>> DataProcessing::getCountOfCallsByShift(QVector<QVector<
             shiftAvg.clear();
         }
     }
+
     return days;
 }

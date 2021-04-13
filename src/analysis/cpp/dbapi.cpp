@@ -7,20 +7,15 @@ void DbApi::connectToDataBase(QString const &path)
         this->db.setDatabaseName(path);
         this->db.open();
         if (!this->isValidDataBase()) {
-            this->closeDataBase();
+            this->disconnectFromDataBase();
             QErrorMessage().showMessage(QErrorMessage::tr("Invalid database"));
         }
     }
 }
 
-void DbApi::closeDataBase(void)
+void DbApi::disconnectFromDataBase(void)
 {
     this->db.close();
-}
-
-bool DbApi::isValidDataBase(void) const
-{
-    return this->db.tables(QSql::Tables).contains("Call_table");
 }
 
 bool DbApi::isEmptyTable(void) const
@@ -47,7 +42,8 @@ QDate DbApi::getLastDate(void) const
     return query.value(0).toDate();
 }
 
-QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart, QDate const &dateEnd) const
+QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart,
+                                                   QDate const &dateEnd) const
 {
     QDate firstDate = this->getFirstDate();
     QDate lastDate = this->getLastDate();
@@ -86,4 +82,9 @@ QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart, QDate
     }
 
     return results;
+}
+
+bool DbApi::isValidDataBase(void) const
+{
+    return this->db.tables(QSql::Tables).contains("Call_table");
 }

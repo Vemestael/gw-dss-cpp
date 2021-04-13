@@ -4,17 +4,26 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
-      settings(QSettings::IniFormat, QSettings::UserScope, "gw-dss-cpp")
+      settings(QSettings::IniFormat, QSettings::UserScope, __APPLICATION_NAME__)
 {
     ui->setupUi(this);
-    this->initUi();
+    this->loadWindow();
     this->loadSettings();
-}
+};
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
+};
+
+// window preparing
+
+void MainWindow::loadWindow(void)
+{
+    this->setDate();
+    this->setTablesHeaders();
+    this->setButtonsHandling();
+};
 
 void MainWindow::loadSettings(void)
 {
@@ -27,20 +36,13 @@ void MainWindow::loadSettings(void)
 
     QString lang = this->settings.value("lang", "en").toString();
     this->switchLangTriggered(lang);
-}
-
-void MainWindow::initUi(void)
-{
-    this->setDate();
-    this->setTablesHeaders();
-    this->setButtonsHandling();
-}
+};
 
 void MainWindow::setDate(void)
 {
     this->ui->dateStart->setDate(QDate::currentDate().addDays(-7));
     this->ui->dateEnd->setDate(QDate::currentDate());
-}
+};
 
 void MainWindow::setTablesHeaders(void)
 {
@@ -89,7 +91,7 @@ void MainWindow::setTablesHeaders(void)
         table->setColumnWidth(0, 10);
         table->setColumnWidth(1, 160);
     }
-}
+};
 
 void MainWindow::setButtonsHandling(void)
 {
@@ -112,7 +114,9 @@ void MainWindow::setButtonsHandling(void)
             [this]() { this->switchLangTriggered("uk_UA"); });
     connect(this->ui->ruLang, &QAction::triggered, this,
             [this]() { this->switchLangTriggered("ru_RU"); });
-}
+};
+
+// pressed event handlers
 
 void MainWindow::allTimePressed(void)
 {
@@ -198,6 +202,8 @@ void MainWindow::analyzePressed(void)
     }
 };
 
+// triggered menu handlers
+
 void MainWindow::setDbPathTriggered(void)
 {
     QString fileName =
@@ -222,7 +228,7 @@ void MainWindow::setHourlyPaymentTriggered(void)
 void MainWindow::switchLangTriggered(QString const &lang)
 {
     QTranslator translator;
-    if (translator.load("gw-dss-cpp_" + lang, "./translations/")) {
+    if (translator.load(__APPLICATION_NAME__ + lang, "./translations/")) {
         if (qApp->installTranslator(&translator)) {
             this->ui->retranslateUi(this);
             this->setTablesHeaders();

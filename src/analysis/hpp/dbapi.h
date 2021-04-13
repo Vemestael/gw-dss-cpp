@@ -21,14 +21,17 @@ public:
     ~DbApi(void) = default;
 
     void connectToDataBase(QString const &path);
-    void closeDataBase(void);
+    void disconnectFromDataBase(void);
+
     bool isEmptyTable(void) const;
+
     QDate getFirstDate(void) const;
     QDate getLastDate(void) const;
     QVector<QVector<double>> getCallsInfoByDate(QDate const &dateStart, QDate const &dateEnd) const;
 
 private:
     QSqlDatabase db;
+
     bool isValidDataBase(void) const;
 };
 
