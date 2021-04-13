@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DBAPI_H
 #define DBAPI_H
 
@@ -16,14 +17,15 @@
 class DbApi
 {
 public:
-    DbApi(void)=default;
-    ~DbApi(void)=default;
+    DbApi(void) = default;
+    ~DbApi(void) = default;
     void connectToDataBase(QString path);
     void closeDataBase(void);
     bool isEmptyTable(void);
     QDate getFirstDate(void);
     QDate getLastDate(void);
     QList<QList<double>> getCallsInfoByDate(QDate dateStart, QDate dateEnd);
+
 private:
     QSqlDatabase db;
     bool isValidDataBase(void);

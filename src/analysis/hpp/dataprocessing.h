@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DATAPROCESSING_H
 #define DATAPROCESSING_H
 
