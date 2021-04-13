@@ -55,6 +55,6 @@ private:
 
     void setDbPathTriggered(void);
     void setHourlyPaymentTriggered(void);
-    void switchLangTriggered(QString lang);
+    void switchLangTriggered(QString const &lang);
 };
 #endif // MAINWINDOW_H

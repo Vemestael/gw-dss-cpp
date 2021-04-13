@@ -4,6 +4,10 @@
 
 #include "./dbapi.h"
 
-QList<QList<double>> getCountOfCallsByShift(QList<QList<double>> inputData);
+class DataProcessing
+{
+public:
+    static QVector<QVector<double>> getCountOfCallsByShift(QVector<QVector<double>> inputData);
+};
 
 #endif // DATAPROCESSING_H

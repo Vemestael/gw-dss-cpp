@@ -23,7 +23,8 @@ void MainWindow::loadSettings(void)
         this->setDbPathTriggered();
         path = this->settings.value("dbPath", "").toString();
     }
-    db.connectToDataBase(path);
+    this->db.connectToDataBase(path);
+
     QString lang = this->settings.value("lang", "en").toString();
     this->switchLangTriggered(lang);
 }
@@ -74,7 +75,7 @@ void MainWindow::setTablesHeaders(void)
             }
         }
 
-        auto item = [](QString text) {
+        auto item = [](QString const &text) {
             QTableWidgetItem *item = new QTableWidgetItem();
             item->setTextAlignment(Qt::AlignCenter);
             item->setText(text);
@@ -119,7 +120,7 @@ void MainWindow::allTimePressed(void)
         QErrorMessage().showMessage(QErrorMessage::tr("Empty dataset"));
         return;
     }
-    this->ui->dateStart->setDate(db.getFirstDate());
+    this->ui->dateStart->setDate(this->db.getFirstDate());
 };
 
 void MainWindow::lastYearPressed(void)
@@ -148,35 +149,35 @@ void MainWindow::analyzePressed(void)
         QErrorMessage().showMessage(QErrorMessage::tr("Empty dataset"));
         return;
     }
-    double cost = settings.value("channelCost", 0.0).toDouble();
+    double cost = this->settings.value("channelCost", 0.0).toDouble();
     while (cost == 0.0) {
         this->setHourlyPaymentTriggered();
-        cost = settings.value("channelCost", 0.0).toDouble();
+        cost = this->settings.value("channelCost", 0.0).toDouble();
     }
-    QList<QTableWidget *> predictTables = {
+    QVector<QTableWidget *> predictTables = {
         this->ui->predictTable1, this->ui->predictTable2, this->ui->predictTable3,
         this->ui->predictTable4, this->ui->predictTable5, this->ui->predictTable6,
         this->ui->predictTable7,
     };
-    QList<QTableWidget *> costTables = {
+    QVector<QTableWidget *> costTables = {
         this->ui->costTable1, this->ui->costTable2, this->ui->costTable3, this->ui->costTable4,
         this->ui->costTable5, this->ui->costTable6, this->ui->costTable7,
     };
 
-    QVector<int> personalCount(20);
+    QVector<unsigned> personalCount(20);
     std::iota(personalCount.begin(), personalCount.end(), 1);
 
-    QList<QList<double>> lambdaByShift = getCountOfCallsByShift(
-            db.getCallsInfoByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
+    QVector<QVector<double>> lambdaByShift = DataProcessing::getCountOfCallsByShift(
+            this->db.getCallsInfoByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
 
-    for (size_t i = 0; i < lambdaByShift.length(); i++) {
-        QTableWidget *predictTable = predictTables[i];
-        QTableWidget *costTable = costTables[i];
+    for (size_t i = 0; i < lambdaByShift.length(); ++i) {
+        auto predictTable = predictTables[i];
+        auto costTable = costTables[i];
 
-        for (size_t j = 0; j < lambdaByShift[i].length(); j++) {
+        for (size_t j = 0; j < lambdaByShift[i].length(); ++j) {
             size_t index = 1;
-            QList<QList<double>> predicts =
-                    getPredict(QList<int>::fromVector(personalCount), 20, lambdaByShift[i][j], 12);
+            QVector<QVector<double>> predicts =
+                    Predict::getPredict(personalCount, 20, lambdaByShift[i][j], 12);
 
             for (auto &&predict : predicts) {
                 for (auto &&characteristic : predict) {
@@ -202,8 +203,8 @@ void MainWindow::setDbPathTriggered(void)
     QString fileName =
             QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("DB file (*.db *.sqlite)"));
     if (fileName != "") {
-        settings.setValue("dbPath", fileName);
-        settings.sync();
+        this->settings.setValue("dbPath", fileName);
+        this->settings.sync();
     }
 };
 
@@ -213,20 +214,20 @@ void MainWindow::setHourlyPaymentTriggered(void)
     double cost = QInputDialog::getDouble(this, "Hourly payment", "Enter hourly payment", 0, 0,
                                           2147483647, 2, &ok);
     if (ok) {
-        settings.setValue("channelCost", cost);
-        settings.sync();
+        this->settings.setValue("channelCost", cost);
+        this->settings.sync();
     }
 };
 
-void MainWindow::switchLangTriggered(QString lang)
+void MainWindow::switchLangTriggered(QString const &lang)
 {
     QTranslator translator;
     if (translator.load("gw-dss-cpp_" + lang, "./translations/")) {
         if (qApp->installTranslator(&translator)) {
             this->ui->retranslateUi(this);
             this->setTablesHeaders();
-            settings.setValue("lang", lang);
-            settings.sync();
+            this->settings.setValue("lang", lang);
+            this->settings.sync();
         } else {
             QErrorMessage().showMessage("Unable to install language");
         }

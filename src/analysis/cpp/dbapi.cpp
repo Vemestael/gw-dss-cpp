@@ -1,6 +1,6 @@
 #include "../hpp/dbapi.h"
 
-void DbApi::connectToDataBase(QString path)
+void DbApi::connectToDataBase(QString const &path)
 {
     if (!this->db.isOpen()) {
         this->db = QSqlDatabase::addDatabase("QSQLITE");
@@ -18,12 +18,12 @@ void DbApi::closeDataBase(void)
     this->db.close();
 }
 
-bool DbApi::isValidDataBase(void)
+bool DbApi::isValidDataBase(void) const
 {
     return this->db.tables(QSql::Tables).contains("Call_table");
 }
 
-bool DbApi::isEmptyTable(void)
+bool DbApi::isEmptyTable(void) const
 {
     QSqlQuery query;
     query.exec("select count(id) from Call_table");
@@ -31,7 +31,7 @@ bool DbApi::isEmptyTable(void)
     return !query.value(0).toBool();
 }
 
-QDate DbApi::getFirstDate(void)
+QDate DbApi::getFirstDate(void) const
 {
     QSqlQuery query;
     query.exec("select date from Call_table order by id limit 1");
@@ -39,7 +39,7 @@ QDate DbApi::getFirstDate(void)
     return query.value(0).toDate();
 }
 
-QDate DbApi::getLastDate(void)
+QDate DbApi::getLastDate(void) const
 {
     QSqlQuery query;
     query.exec("select date from Call_table order by id desc limit 1");
@@ -47,7 +47,7 @@ QDate DbApi::getLastDate(void)
     return query.value(0).toDate();
 }
 
-QList<QList<double>> DbApi::getCallsInfoByDate(QDate dateStart, QDate dateEnd)
+QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart, QDate const &dateEnd) const
 {
     QDate firstDate = this->getFirstDate();
     QDate lastDate = this->getLastDate();
@@ -79,13 +79,10 @@ QList<QList<double>> DbApi::getCallsInfoByDate(QDate dateStart, QDate dateEnd)
     QSqlQuery query;
     query.exec(queryText);
 
-    QList<QList<double>> results;
+    QVector<QVector<double>> results;
     while (query.next()) {
-        QList<double> result;
-        result.append(query.value(0).toDouble());
-        result.append(query.value(1).toDouble());
-        result.append(query.value(2).toDouble());
-        results.append(result);
+        results.append({ query.value(0).toDouble(), query.value(1).toDouble(),
+                         query.value(2).toDouble() });
     }
 
     return results;
