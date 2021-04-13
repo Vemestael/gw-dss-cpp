@@ -1,10 +1,9 @@
 #include "../hpp/verticatextdelegate.h"
 
-VerticalTextDelegate::VerticalTextDelegate(QObject *parent)
-    : QStyledItemDelegate(parent){};
+VerticalTextDelegate::VerticalTextDelegate(QObject *parent) : QStyledItemDelegate(parent) {};
 
 void VerticalTextDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
-                   const QModelIndex &index) const
+                                 const QModelIndex &index) const
 {
     QStyleOptionViewItem optionCopy = option;
     QPointF rectCenter = QRectF(option.rect).center();
@@ -18,8 +17,8 @@ void VerticalTextDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
 }
 
 QSize VerticalTextDelegate::sizeHint(const QStyleOptionViewItem &option,
-                       const QModelIndex &index) const {
+                                     const QModelIndex &index) const
+{
     QSize val = QStyledItemDelegate::sizeHint(option, index);
     return QSize(val.height(), val.width());
 }
-

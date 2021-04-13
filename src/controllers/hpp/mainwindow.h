@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -20,8 +21,12 @@
 #include "../../analysis/hpp/predict.h"
 #include "verticatextdelegate.h"
 
+#define __APPLICATION_NAME__ "gw-dss-cpp"
+
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -37,12 +42,14 @@ private:
     DbApi db;
     QSettings settings;
 
-    void loadSettings(void);
-    void initUi(void);
+    // window preparing
+    void loadWindow(void);
+    void loadSettings(void);    
     void setDate(void);
     void setTablesHeaders(void);
     void setButtonsHandling(void);
 
+    // pressed event handlers
     void allTimePressed(void);
     void lastYearPressed(void);
     void lastHalfYearPressed(void);
@@ -50,8 +57,9 @@ private:
     void lastMonthPressed(void);
     void analyzePressed(void);
 
+    // triggered menu handlers
     void setDbPathTriggered(void);
     void setHourlyPaymentTriggered(void);
-    void switchLangTriggered(QString lang);
+    void switchLangTriggered(QString const &lang);
 };
 #endif // MAINWINDOW_H

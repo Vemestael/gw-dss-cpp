@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DBAPI_H
 #define DBAPI_H
 
@@ -9,24 +10,29 @@
 #include <QDate>
 #include <QVariant>
 #include <QString>
-#include <QList>
+#include <QVector>
 #include <QStringList>
 #include <QErrorMessage>
 
 class DbApi
 {
 public:
-    DbApi(void)=default;
-    ~DbApi(void)=default;
-    void connectToDataBase(QString path);
-    void closeDataBase(void);
-    bool isEmptyTable(void);
-    QDate getFirstDate(void);
-    QDate getLastDate(void);
-    QList<QList<double>> getCallsInfoByDate(QDate dateStart, QDate dateEnd);
+    DbApi(void) = default;
+    ~DbApi(void) = default;
+
+    void connectToDataBase(QString const &path);
+    void disconnectFromDataBase(void);
+
+    bool isEmptyTable(void) const;
+
+    QDate getFirstDate(void) const;
+    QDate getLastDate(void) const;
+    QVector<QVector<double>> getCallsInfoByDate(QDate const &dateStart, QDate const &dateEnd) const;
+
 private:
     QSqlDatabase db;
-    bool isValidDataBase(void);
+
+    bool isValidDataBase(void) const;
 };
 
 #endif // DBAPI_H

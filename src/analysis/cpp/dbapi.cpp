@@ -1,31 +1,24 @@
 #include "../hpp/dbapi.h"
 
-void DbApi::connectToDataBase(QString path)
+void DbApi::connectToDataBase(QString const &path)
 {
-    if(!this->db.isOpen())
-    {
+    if (!this->db.isOpen()) {
         this->db = QSqlDatabase::addDatabase("QSQLITE");
         this->db.setDatabaseName(path);
         this->db.open();
-        if(!this->isValidDataBase())
-        {
-            this->closeDataBase();
+        if (!this->isValidDataBase()) {
+            this->disconnectFromDataBase();
             QErrorMessage().showMessage(QErrorMessage::tr("Invalid database"));
         }
     }
 }
 
-void DbApi::closeDataBase(void)
+void DbApi::disconnectFromDataBase(void)
 {
     this->db.close();
 }
 
-bool DbApi::isValidDataBase(void)
-{
-    return this->db.tables(QSql::Tables).contains("Call_table");
-}
-
-bool DbApi::isEmptyTable(void)
+bool DbApi::isEmptyTable(void) const
 {
     QSqlQuery query;
     query.exec("select count(id) from Call_table");
@@ -33,7 +26,7 @@ bool DbApi::isEmptyTable(void)
     return !query.value(0).toBool();
 }
 
-QDate DbApi::getFirstDate(void)
+QDate DbApi::getFirstDate(void) const
 {
     QSqlQuery query;
     query.exec("select date from Call_table order by id limit 1");
@@ -41,7 +34,7 @@ QDate DbApi::getFirstDate(void)
     return query.value(0).toDate();
 }
 
-QDate DbApi::getLastDate(void)
+QDate DbApi::getLastDate(void) const
 {
     QSqlQuery query;
     query.exec("select date from Call_table order by id desc limit 1");
@@ -49,27 +42,24 @@ QDate DbApi::getLastDate(void)
     return query.value(0).toDate();
 }
 
-QList<QList<double>> DbApi::getCallsInfoByDate(QDate dateStart, QDate dateEnd)
+QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart,
+                                                   QDate const &dateEnd) const
 {
     QDate firstDate = this->getFirstDate();
     QDate lastDate = this->getLastDate();
 
-    if (dateEnd < lastDate)
-    {
+    if (dateEnd < lastDate) {
         lastDate = dateEnd;
     }
-    if (dateStart > firstDate)
-    {
+    if (dateStart > firstDate) {
         firstDate = dateStart;
     }
 
     int daysCount = firstDate.daysTo(lastDate);
     int weekCount;
-    if (daysCount % 7 == 0)
-    {
+    if (daysCount % 7 == 0) {
         weekCount = daysCount / 7;
-    }else
-    {
+    } else {
         weekCount = daysCount / 7 + 1;
     }
 
@@ -78,20 +68,23 @@ QList<QList<double>> DbApi::getCallsInfoByDate(QDate dateStart, QDate dateEnd)
     queryText += "strftime('%H', date) HourNumber, ";
     queryText += "count(id)/" + QString("%1").arg(weekCount) + " ";
     queryText += "from Call_table ";
-    queryText += "where (date BETWEEN '" + dateStart.toString(Qt::ISODate) + "' AND '" + dateEnd.toString(Qt::ISODate) + "') ";
+    queryText += "where (date BETWEEN '" + dateStart.toString(Qt::ISODate) + "' AND '"
+            + dateEnd.toString(Qt::ISODate) + "') ";
     queryText += "group by WeekDayNumber, HourNumber";
 
     QSqlQuery query;
     query.exec(queryText);
 
-    QList<QList<double>> results;
-    while(query.next()){
-        QList<double> result;
-        result.append(query.value(0).toDouble());
-        result.append(query.value(1).toDouble());
-        result.append(query.value(2).toDouble());
-        results.append(result);
+    QVector<QVector<double>> results;
+    while (query.next()) {
+        results.append({ query.value(0).toDouble(), query.value(1).toDouble(),
+                         query.value(2).toDouble() });
     }
 
     return results;
+}
+
+bool DbApi::isValidDataBase(void) const
+{
+    return this->db.tables(QSql::Tables).contains("Call_table");
 }
