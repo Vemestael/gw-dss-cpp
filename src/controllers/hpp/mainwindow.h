@@ -60,6 +60,9 @@ private:
     // triggered menu handlers
     void setDbPathTriggered(void);
     void setHourlyPaymentTriggered(void);
+    void setServedRequestsTriggered(void);
+    void setStaffNumberTriggered(void);
+    void setMaxQueueLengthTriggered(void);
     void switchLangTriggered(QString const &lang);
 };
 #endif // MAINWINDOW_H

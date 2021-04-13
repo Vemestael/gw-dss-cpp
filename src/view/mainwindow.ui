@@ -1289,7 +1289,10 @@
      <string>Menu</string>
     </property>
     <addaction name="actionDbPath"/>
-    <addaction name="actionCost"/>
+    <addaction name="actionHourlyPayment"/>
+    <addaction name="actionServedRequests"/>
+    <addaction name="actionStaffNumber"/>
+    <addaction name="actionMaxQueueLength"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -1307,7 +1310,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionDbPath">
    <property name="text">
-    <string>DB path</string>
+    <string>db path</string>
    </property>
    <property name="font">
     <font>
@@ -1316,7 +1319,7 @@
     </font>
    </property>
   </action>
-  <action name="actionCost">
+  <action name="actionHourlyPayment">
    <property name="text">
     <string>hourly payment</string>
    </property>
@@ -1325,11 +1328,6 @@
      <family>Times New Roman</family>
      <pointsize>16</pointsize>
     </font>
-   </property>
-  </action>
-  <action name="action_3">
-   <property name="text">
-    <string>exit</string>
    </property>
   </action>
   <action name="actionExit">
@@ -1371,6 +1369,39 @@
   <action name="ruLang">
    <property name="text">
     <string>Русский</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionServedRequests">
+   <property name="text">
+    <string>count served requests/h</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionStaffNumber">
+   <property name="text">
+    <string>staff number</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionMaxQueueLength">
+   <property name="text">
+    <string>max queue length</string>
    </property>
    <property name="font">
     <font>

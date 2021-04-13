@@ -104,8 +104,14 @@ void MainWindow::setButtonsHandling(void)
     connect(this->ui->analyze, &QPushButton::clicked, this, &MainWindow::analyzePressed);
 
     connect(this->ui->actionDbPath, &QAction::triggered, this, &MainWindow::setDbPathTriggered);
-    connect(this->ui->actionCost, &QAction::triggered, this,
+    connect(this->ui->actionHourlyPayment, &QAction::triggered, this,
             &MainWindow::setHourlyPaymentTriggered);
+    connect(this->ui->actionServedRequests, &QAction::triggered, this,
+            &MainWindow::setServedRequestsTriggered);
+    connect(this->ui->actionStaffNumber, &QAction::triggered, this,
+            &MainWindow::setStaffNumberTriggered);
+    connect(this->ui->actionMaxQueueLength, &QAction::triggered, this,
+            &MainWindow::setMaxQueueLengthTriggered);
     connect(this->ui->actionExit, &QAction::triggered, qApp, qApp->quit);
 
     connect(this->ui->enLang, &QAction::triggered, this,
@@ -154,9 +160,24 @@ void MainWindow::analyzePressed(void)
         return;
     }
     double cost = this->settings.value("channelCost", 0.0).toDouble();
+    double servedRequirements = this->settings.value("servedRequirements", 0.0).toDouble();
+    unsigned staffNumber = this->settings.value("staffNumber", 0).toInt();
+    unsigned queueLength = this->settings.value("queueLength", 0).toInt();
     while (cost == 0.0) {
         this->setHourlyPaymentTriggered();
         cost = this->settings.value("channelCost", 0.0).toDouble();
+    }
+    while (servedRequirements == 0.0) {
+        this->setServedRequestsTriggered();
+        servedRequirements = this->settings.value("servedRequirements", 0.0).toDouble();
+    }
+    while (staffNumber == 0) {
+        this->setStaffNumberTriggered();
+        staffNumber = this->settings.value("staffNumber", 0).toInt();
+    }
+    while (queueLength == 0) {
+        this->setMaxQueueLengthTriggered();
+        queueLength = this->settings.value("queueLength", 0).toInt();
     }
     QVector<QTableWidget *> predictTables = {
         this->ui->predictTable1, this->ui->predictTable2, this->ui->predictTable3,
@@ -168,7 +189,7 @@ void MainWindow::analyzePressed(void)
         this->ui->costTable5, this->ui->costTable6, this->ui->costTable7,
     };
 
-    QVector<unsigned> personalCount(20);
+    QVector<unsigned> personalCount(staffNumber);
     std::iota(personalCount.begin(), personalCount.end(), 1);
 
     QVector<QVector<double>> lambdaByShift = DataProcessing::getCountOfCallsByShift(
@@ -181,7 +202,7 @@ void MainWindow::analyzePressed(void)
         for (size_t j = 0; j < lambdaByShift[i].length(); ++j) {
             size_t index = 1;
             QVector<QVector<double>> predicts =
-                    Predict::getPredict(personalCount, 20, lambdaByShift[i][j], 12);
+                    Predict::getPredict(personalCount, queueLength, lambdaByShift[i][j], servedRequirements);
 
             for (auto &&predict : predicts) {
                 for (auto &&characteristic : predict) {
@@ -221,6 +242,39 @@ void MainWindow::setHourlyPaymentTriggered(void)
                                           2147483647, 2, &ok);
     if (ok) {
         this->settings.setValue("channelCost", cost);
+        this->settings.sync();
+    }
+};
+
+void MainWindow::setServedRequestsTriggered(void)
+{
+    bool ok;
+    double count = QInputDialog::getDouble(this, "Count served requirements", "Enter count of served requirements per hour by one person", 0, 0,
+                                          2147483647, 2, &ok);
+    if (ok) {
+        this->settings.setValue("servedRequirements", count);
+        this->settings.sync();
+    }
+};
+
+void MainWindow::setStaffNumberTriggered(void)
+{
+    bool ok;
+    unsigned count = QInputDialog::getInt(this, "Staff number", "Enter number of staff", 0, 0,
+                                          2147483647, 2, &ok);
+    if (ok) {
+        this->settings.setValue("staffNumber", count);
+        this->settings.sync();
+    }
+};
+
+void MainWindow::setMaxQueueLengthTriggered(void)
+{
+    bool ok;
+    unsigned queueLength = QInputDialog::getInt(this, "Max queue length", "Enter maximum queue length", 0, 0,
+                                          2147483647, 2, &ok);
+    if (ok) {
+        this->settings.setValue("queueLength", queueLength);
         this->settings.sync();
     }
 };
