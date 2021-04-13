@@ -30,7 +30,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="all_time">
+      <widget class="QPushButton" name="allTime">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -43,7 +43,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="last_year">
+      <widget class="QPushButton" name="lastYear">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -220,7 +220,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="date_start">
+      <widget class="QDateEdit" name="dateStart">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -243,7 +243,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="date_end">
+      <widget class="QDateEdit" name="dateEnd">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -354,7 +354,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QPushButton" name="last_6_month">
+      <widget class="QPushButton" name="lastHalfYear">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -367,7 +367,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="last_3_month">
+      <widget class="QPushButton" name="lastQuartYear">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -380,7 +380,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="last_month">
+      <widget class="QPushButton" name="lastMonth">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -438,7 +438,7 @@
        <attribute name="title">
         <string>Mo</string>
        </attribute>
-       <widget class="QTableWidget" name="predict_table_1">
+       <widget class="QTableWidget" name="predictTable1">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -495,7 +495,7 @@
        <attribute name="title">
         <string>Tu</string>
        </attribute>
-       <widget class="QTableWidget" name="predict_table_2">
+       <widget class="QTableWidget" name="predictTable2">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -552,7 +552,7 @@
        <attribute name="title">
         <string>We</string>
        </attribute>
-       <widget class="QTableWidget" name="predict_table_3">
+       <widget class="QTableWidget" name="predictTable3">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -609,7 +609,7 @@
        <attribute name="title">
         <string>Th</string>
        </attribute>
-       <widget class="QTableWidget" name="predict_table_4">
+       <widget class="QTableWidget" name="predictTable4">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -666,7 +666,7 @@
        <attribute name="title">
         <string>Fr</string>
        </attribute>
-       <widget class="QTableWidget" name="predict_table_5">
+       <widget class="QTableWidget" name="predictTable5">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -723,7 +723,7 @@
        <attribute name="title">
         <string>Sa</string>
        </attribute>
-       <widget class="QTableWidget" name="predict_table_6">
+       <widget class="QTableWidget" name="predictTable6">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -780,7 +780,7 @@
        <attribute name="title">
         <string>Su</string>
        </attribute>
-       <widget class="QTableWidget" name="predict_table_7">
+       <widget class="QTableWidget" name="predictTable7">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -855,13 +855,13 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="tab_10">
        <attribute name="title">
         <string>Mo</string>
        </attribute>
-       <widget class="QTableWidget" name="cost_table_1">
+       <widget class="QTableWidget" name="costTable1">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -918,7 +918,7 @@
        <attribute name="title">
         <string>Tu</string>
        </attribute>
-       <widget class="QTableWidget" name="cost_table_2">
+       <widget class="QTableWidget" name="costTable2">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -975,7 +975,7 @@
        <attribute name="title">
         <string>We</string>
        </attribute>
-       <widget class="QTableWidget" name="cost_table_3">
+       <widget class="QTableWidget" name="costTable3">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -1032,7 +1032,7 @@
        <attribute name="title">
         <string>Th</string>
        </attribute>
-       <widget class="QTableWidget" name="cost_table_4">
+       <widget class="QTableWidget" name="costTable4">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -1089,7 +1089,7 @@
        <attribute name="title">
         <string>Fr</string>
        </attribute>
-       <widget class="QTableWidget" name="cost_table_5">
+       <widget class="QTableWidget" name="costTable5">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -1146,7 +1146,7 @@
        <attribute name="title">
         <string>Sa</string>
        </attribute>
-       <widget class="QTableWidget" name="cost_table_6">
+       <widget class="QTableWidget" name="costTable6">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -1203,7 +1203,7 @@
        <attribute name="title">
         <string>Su</string>
        </attribute>
-       <widget class="QTableWidget" name="cost_table_7">
+       <widget class="QTableWidget" name="costTable7">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -1285,24 +1285,24 @@
     <property name="title">
      <string>Menu</string>
     </property>
-    <addaction name="action_db_path"/>
-    <addaction name="action_cost"/>
+    <addaction name="actionDbPath"/>
+    <addaction name="actionCost"/>
     <addaction name="separator"/>
-    <addaction name="action_exit"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
      <string>Language</string>
     </property>
-    <addaction name="en_lang"/>
-    <addaction name="uk_lang"/>
-    <addaction name="ru_lang"/>
+    <addaction name="enLang"/>
+    <addaction name="ukLang"/>
+    <addaction name="ruLang"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_db_path">
+  <action name="actionDbPath">
    <property name="text">
     <string>DB path</string>
    </property>
@@ -1313,7 +1313,7 @@
     </font>
    </property>
   </action>
-  <action name="action_cost">
+  <action name="actionCost">
    <property name="text">
     <string>hourly payment</string>
    </property>
@@ -1329,7 +1329,7 @@
     <string>exit</string>
    </property>
   </action>
-  <action name="action_exit">
+  <action name="actionExit">
    <property name="text">
     <string>Exit</string>
    </property>
@@ -1340,7 +1340,7 @@
     </font>
    </property>
   </action>
-  <action name="en_lang">
+  <action name="enLang">
    <property name="text">
     <string>English</string>
    </property>
@@ -1351,7 +1351,7 @@
     </font>
    </property>
   </action>
-  <action name="uk_lang">
+  <action name="ukLang">
    <property name="text">
     <string>Українська</string>
    </property>
@@ -1362,7 +1362,7 @@
     </font>
    </property>
   </action>
-  <action name="ru_lang">
+  <action name="ruLang">
    <property name="text">
     <string>Русский</string>
    </property>

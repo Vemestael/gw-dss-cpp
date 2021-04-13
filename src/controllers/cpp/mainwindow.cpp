@@ -38,27 +38,27 @@ void MainWindow::initUi(void)
 
 void MainWindow::setDate(void)
 {
-    this->ui->date_start->setDate(QDate::currentDate().addDays(-7));
-    this->ui->date_end->setDate(QDate::currentDate());
+    this->ui->dateStart->setDate(QDate::currentDate().addDays(-7));
+    this->ui->dateEnd->setDate(QDate::currentDate());
 }
 
 void MainWindow::setTablesHeaders(void)
 {
     auto tables = {
-        this->ui->predict_table_1,
-        this->ui->predict_table_2,
-        this->ui->predict_table_3,
-        this->ui->predict_table_4,
-        this->ui->predict_table_5,
-        this->ui->predict_table_6,
-        this->ui->predict_table_7,
-        this->ui->cost_table_1,
-        this->ui->cost_table_2,
-        this->ui->cost_table_3,
-        this->ui->cost_table_4,
-        this->ui->cost_table_5,
-        this->ui->cost_table_6,
-        this->ui->cost_table_7,
+        this->ui->predictTable1,
+        this->ui->predictTable2,
+        this->ui->predictTable3,
+        this->ui->predictTable4,
+        this->ui->predictTable5,
+        this->ui->predictTable6,
+        this->ui->predictTable7,
+        this->ui->costTable1,
+        this->ui->costTable2,
+        this->ui->costTable3,
+        this->ui->costTable4,
+        this->ui->costTable5,
+        this->ui->costTable6,
+        this->ui->costTable7,
     };
     for (auto&& table: tables) {
         table->setSpan(0, 0, 1, 2);
@@ -71,7 +71,7 @@ void MainWindow::setTablesHeaders(void)
         table->setItem(0, 3, new QTableWidgetItem(tr("Shift 2")));
         table->setItem(0, 4, new QTableWidgetItem(tr("Shift 3")));
 
-        if (table->objectName().contains("predict_table_"))
+        if (table->objectName().contains("predictTable"))
         {
             for (size_t i = 0; i < 10; i += 3)
             {
@@ -98,7 +98,7 @@ void MainWindow::setTablesHeaders(void)
         table->setItem(4, 0, item(tr("Optimally")));
         table->setItem(7, 0, item(tr("Min. queue")));
 
-        table->setItemDelegateForColumn(0, new verticalTextDelegate(this));
+        table->setItemDelegateForColumn(0, new VerticalTextDelegate(this));
         table->setColumnWidth(0, 10);
         table->setColumnWidth(1, 160);
     }
@@ -106,20 +106,20 @@ void MainWindow::setTablesHeaders(void)
 
 void MainWindow::setButtonsHandling(void)
 {
-    connect(this->ui->all_time, &QPushButton::clicked, this, &MainWindow::allTimePressed);
-    connect(this->ui->last_year, &QPushButton::clicked, this, &MainWindow::lastYearPressed);
-    connect(this->ui->last_6_month, &QPushButton::clicked, this, &MainWindow::lastHalfYearPressed);
-    connect(this->ui->last_3_month, &QPushButton::clicked, this, &MainWindow::lastQuartYearPressed);
-    connect(this->ui->last_month, &QPushButton::clicked, this, &MainWindow::lastMonthPressed);
+    connect(this->ui->allTime, &QPushButton::clicked, this, &MainWindow::allTimePressed);
+    connect(this->ui->lastYear, &QPushButton::clicked, this, &MainWindow::lastYearPressed);
+    connect(this->ui->lastHalfYear, &QPushButton::clicked, this, &MainWindow::lastHalfYearPressed);
+    connect(this->ui->lastQuartYear, &QPushButton::clicked, this, &MainWindow::lastQuartYearPressed);
+    connect(this->ui->lastMonth, &QPushButton::clicked, this, &MainWindow::lastMonthPressed);
     connect(this->ui->analyze, &QPushButton::clicked, this, &MainWindow::analyzePressed);
 
-    connect(this->ui->action_db_path, &QAction::triggered, this, &MainWindow::setDbPathTriggered);
-    connect(this->ui->action_cost, &QAction::triggered, this, &MainWindow::setHourlyPaymentTriggered);
-    connect(this->ui->action_exit, &QAction::triggered,  qApp, qApp->quit);
+    connect(this->ui->actionDbPath, &QAction::triggered, this, &MainWindow::setDbPathTriggered);
+    connect(this->ui->actionCost, &QAction::triggered, this, &MainWindow::setHourlyPaymentTriggered);
+    connect(this->ui->actionExit, &QAction::triggered,  qApp, qApp->quit);
 
-    connect(this->ui->en_lang, &QAction::triggered, this, [this]() {this->switchLangTriggered("en_US");});
-    connect(this->ui->uk_lang, &QAction::triggered, this, [this]() {this->switchLangTriggered("uk_UA");});
-    connect(this->ui->ru_lang, &QAction::triggered, this, [this]() {this->switchLangTriggered("ru_RU");});
+    connect(this->ui->enLang, &QAction::triggered, this, [this]() {this->switchLangTriggered("en_US");});
+    connect(this->ui->ukLang, &QAction::triggered, this, [this]() {this->switchLangTriggered("uk_UA");});
+    connect(this->ui->ruLang, &QAction::triggered, this, [this]() {this->switchLangTriggered("ru_RU");});
 }
 
 void MainWindow::allTimePressed(void)
@@ -129,26 +129,26 @@ void MainWindow::allTimePressed(void)
         QErrorMessage().showMessage(QErrorMessage::tr("Empty dataset"));
         return;
     }
-    this->ui->date_start->setDate(db.getFirstDate());
+    this->ui->dateStart->setDate(db.getFirstDate());
 };
 
 void MainWindow::lastYearPressed(void){
-    this->ui->date_start->setDate(QDate::currentDate().addYears(-1));
+    this->ui->dateStart->setDate(QDate::currentDate().addYears(-1));
 };
 
 void MainWindow::lastHalfYearPressed(void)
 {
-    this->ui->date_start->setDate(QDate::currentDate().addMonths(-6));
+    this->ui->dateStart->setDate(QDate::currentDate().addMonths(-6));
 };
 
 void MainWindow::lastQuartYearPressed(void)
 {
-    this->ui->date_start->setDate(QDate::currentDate().addMonths(-3));
+    this->ui->dateStart->setDate(QDate::currentDate().addMonths(-3));
 };
 
 void MainWindow::lastMonthPressed(void)
 {
-    this->ui->date_start->setDate(QDate::currentDate().addMonths(-1));
+    this->ui->dateStart->setDate(QDate::currentDate().addMonths(-1));
 };
 
 void MainWindow::analyzePressed(void)
@@ -165,28 +165,28 @@ void MainWindow::analyzePressed(void)
         cost = settings.value("channelCost", 0.0).toDouble();
     }
     QList<QTableWidget*> predictTables = {
-        this->ui->predict_table_1,
-        this->ui->predict_table_2,
-        this->ui->predict_table_3,
-        this->ui->predict_table_4,
-        this->ui->predict_table_5,
-        this->ui->predict_table_6,
-        this->ui->predict_table_7,
+        this->ui->predictTable1,
+        this->ui->predictTable2,
+        this->ui->predictTable3,
+        this->ui->predictTable4,
+        this->ui->predictTable5,
+        this->ui->predictTable6,
+        this->ui->predictTable7,
     };
     QList<QTableWidget*> costTables = {
-            this->ui->cost_table_1,
-            this->ui->cost_table_2,
-            this->ui->cost_table_3,
-            this->ui->cost_table_4,
-            this->ui->cost_table_5,
-            this->ui->cost_table_6,
-            this->ui->cost_table_7,
+            this->ui->costTable1,
+            this->ui->costTable2,
+            this->ui->costTable3,
+            this->ui->costTable4,
+            this->ui->costTable5,
+            this->ui->costTable6,
+            this->ui->costTable7,
     };
 
     QVector<int> personalCount(20);
     std::iota(personalCount.begin(), personalCount.end(), 1);
 
-    QList<QList<double>> lambdaByShift = getCountOfCallsByShift(db.getCallsInfoByDate(this->ui->date_start->date(), this->ui->date_end->date()));
+    QList<QList<double>> lambdaByShift = getCountOfCallsByShift(db.getCallsInfoByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
 
     for(size_t i = 0; i < lambdaByShift.length(); i++)
     {
@@ -196,7 +196,7 @@ void MainWindow::analyzePressed(void)
         for(size_t j = 0; j < lambdaByShift[i].length(); j++)
         {
             size_t index = 1;
-            QList<QList<double>> predicts = getPredict(personalCount, 20, lambdaByShift[i][j], 12);
+            QList<QList<double>> predicts = getPredict(QList<int>::fromVector(personalCount), 20, lambdaByShift[i][j], 12);
 
             for (auto&& predict : predicts)
             {

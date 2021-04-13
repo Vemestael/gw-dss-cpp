@@ -7,6 +7,7 @@
 #include <QtSql/QSqlDatabase>
 
 #include <QDate>
+#include <QVariant>
 #include <QString>
 #include <QList>
 #include <QStringList>

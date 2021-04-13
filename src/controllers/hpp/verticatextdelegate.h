@@ -3,11 +3,11 @@
 
 #include <QtWidgets>
 
-class verticalTextDelegate : public QStyledItemDelegate
+class VerticalTextDelegate : public QStyledItemDelegate
 {
 public:
-    explicit verticalTextDelegate(QObject *parent = nullptr);
-    ~verticalTextDelegate() = default;
+    explicit VerticalTextDelegate(QObject *parent = nullptr);
+    ~VerticalTextDelegate() = default;
 
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;

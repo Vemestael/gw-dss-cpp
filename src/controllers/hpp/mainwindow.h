@@ -11,6 +11,7 @@
 #include <QSettings>
 #include <QTranslator>
 #include <QString>
+#include <QList>
 #include <QVector>
 #include <QLocale>
 
