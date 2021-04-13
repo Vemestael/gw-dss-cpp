@@ -228,7 +228,7 @@ void MainWindow::setHourlyPaymentTriggered(void)
 void MainWindow::switchLangTriggered(QString const &lang)
 {
     QTranslator translator;
-    if (translator.load(__APPLICATION_NAME__ + lang, "./translations/")) {
+    if (translator.load(QString(__APPLICATION_NAME__) + "_" + lang, "./translations/")) {
         if (qApp->installTranslator(&translator)) {
             this->ui->retranslateUi(this);
             this->setTablesHeaders();
