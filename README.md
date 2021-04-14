@@ -13,8 +13,7 @@ gw-dss-cpp - simple tool that use queueing theory concepts to make predictions a
 3. Init the git submodule:
 ```
 $ git submodule init
-$ git submodule update --recursive
-$ git submodule foreach --recursive git submodule update --init 
+$ git submodule update --init --recursive
 ```
 
 4. Configure the project using CMake:
@@ -26,7 +25,7 @@ $ cmake -B ./build -G <preferred generator>
 ```
 $ cmake --build ./build --config <Debug|Release> --target <gw-dss-cpp|deployment|all>
 ```
-> As you can see, there is two available targets:
+> As you can see, there are two available targets:
 > * gw-dss-cpp - build application independently:
 > * deployment - run deployment(only on Windows).
 
