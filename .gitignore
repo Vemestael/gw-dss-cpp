@@ -73,3 +73,4 @@ Thumbs.db
 
 build/
 CMakeLists.txt.user
+.vscode/
