@@ -25,16 +25,12 @@ QVector<QVector<double>> Predict::getPredict(QVector<unsigned> channelCountArr, 
     QVector<QVector<double>> characteristics =
             Predict::getCharacteristics(channelCountArr, queueCount, la, mu, nu, n);
 
-    double nMax = 0, lMin = 20, optimalityCoefficient = 0;
+    double nMax = 0, lMin = 20;
     int nMaxIndex = 0, lMinIndex = 0, optimalityCoefficientIndex = 0;
 
     for (size_t i = 0; i < channelCountArr.length(); ++i) {
         double n = characteristics[0][i];
         double l = characteristics[1][i];
-        double coefficient = 0;
-        if (l != 0) {
-            coefficient = n / l;
-        }
         if (n > nMax) {
             nMax = n;
             nMaxIndex = i;
@@ -43,11 +39,9 @@ QVector<QVector<double>> Predict::getPredict(QVector<unsigned> channelCountArr, 
             lMin = l;
             lMinIndex = i;
         }
-        if (coefficient > optimalityCoefficient) {
-            optimalityCoefficient = coefficient;
-            optimalityCoefficientIndex = i;
-        }
     }
+
+    optimalityCoefficientIndex = (lMinIndex - nMaxIndex) / 2 + nMaxIndex;
 
     QVector<QVector<double>> predict;
     predict.append({
