@@ -73,7 +73,7 @@ void MainWindow::setTablesHeaders(void)
         } else {
             for (size_t i = 0; i < 10; i += 3) {
                 table->setItem(i + 1, 1, new QTableWidgetItem(tr("Personnel costs")));
-                table->setItem(i + 2, 1, new QTableWidgetItem(tr("Application cost")));
+                table->setItem(i + 2, 1, new QTableWidgetItem(tr("Requests cost")));
             }
         }
 
@@ -83,7 +83,7 @@ void MainWindow::setTablesHeaders(void)
             item->setText(text);
             return item;
         };
-        table->setItem(1, 0, item(tr("Maximum applications")));
+        table->setItem(1, 0, item(tr("Maximum requests")));
         table->setItem(4, 0, item(tr("Optimally")));
         table->setItem(7, 0, item(tr("Min. queue")));
 
@@ -289,7 +289,7 @@ void MainWindow::switchLangTriggered(QString const &lang)
             this->settings.setValue("lang", lang);
             this->settings.sync();
         } else {
-            QErrorMessage().showMessage("Unable to install language");
+            QErrorMessage().showMessage(QErrorMessage::tr("Unable to install language"));
         }
     };
 };
