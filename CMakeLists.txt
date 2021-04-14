@@ -106,3 +106,11 @@ if(WIN32 AND TARGET deployment)
         COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:libqtmcalc>" "${CMAKE_CURRENT_BINARY_DIR}/windeployqt/$<TARGET_FILE_NAME:libqtmcalc>"
     )
 endif()
+
+# ====================================================================================================
+#                                         UPDATE TRANSLATIONS
+# ====================================================================================================
+
+add_custom_target(make-lupdate 
+    COMMAND lupdate ${CMAKE_CURRENT_LIST_DIR}/src/ -ts ${TS_FILES}
+)
