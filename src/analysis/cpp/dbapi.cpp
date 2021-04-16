@@ -42,7 +42,7 @@ QDate DbApi::getLastDate(void) const
     return query.value(0).toDate();
 }
 
-QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart,
+QVector<QVector<double>> DbApi::getCallsCountsByDate(QDate const &dateStart,
                                                    QDate const &dateEnd) const
 {
     QDate firstDate = this->getFirstDate();
@@ -83,6 +83,41 @@ QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart,
 
     return results;
 }
+
+QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart,
+                                                   QDate const &dateEnd) const
+{
+    QDate firstDate = this->getFirstDate();
+    QDate lastDate = this->getLastDate();
+
+    if (dateEnd < lastDate) {
+        lastDate = dateEnd;
+    }
+    if (dateStart > firstDate) {
+        firstDate = dateStart;
+    }
+
+    QString queryText;
+    queryText += "select strftime('%Y-%m-%d %H', date) Day, ";
+    queryText += "count(id) ";
+    queryText += "from Call_table ";
+    queryText += "where (date BETWEEN '" + dateStart.toString(Qt::ISODate) + "' AND '"
+            + dateEnd.toString(Qt::ISODate) + "') ";
+    queryText += "group by Day";
+
+    QSqlQuery query;
+    query.exec(queryText);
+
+    QVector<double> date;
+    QVector<double> avgs;
+    while (query.next()) {
+        date.append(query.value(0).toDateTime().toSecsSinceEpoch());
+        avgs.append(query.value(1).toDouble());
+    }
+
+    return {date, avgs};
+}
+
 
 bool DbApi::isValidDataBase(void) const
 {

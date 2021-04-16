@@ -30,7 +30,7 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/extern/qtm-calc EXCLUDE_FROM_ALL)
 add_library(qcustomplot SHARED)
 target_sources(qcustomplot PRIVATE ${CMAKE_CURRENT_LIST_DIR}/3rd_party/qcustomplot/qcustomplot.cpp)
 target_link_libraries(qcustomplot PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::PrintSupport)
-target_include_directories(qcustomplot PRIVATE ${CMAKE_CURRENT_LIST_DIR}/3rd_party/qcustomplot)
+target_include_directories(qcustomplot PUBLIC ${CMAKE_CURRENT_LIST_DIR}/3rd_party/qcustomplot)
 
 # ====================================================================================================
 #                                        TRANSLATIONS & SOURCES
@@ -47,12 +47,14 @@ set(PROJECT_SOURCES
 
     ${CMAKE_CURRENT_LIST_DIR}/src/controllers/hpp/mainwindow.h
     ${CMAKE_CURRENT_LIST_DIR}/src/controllers/hpp/verticatextdelegate.h
+    ${CMAKE_CURRENT_LIST_DIR}/src/controllers/hpp/chartwindow.h
     ${CMAKE_CURRENT_LIST_DIR}/src/analysis/hpp/dbapi.h
     ${CMAKE_CURRENT_LIST_DIR}/src/analysis/hpp/dataprocessing.h
     ${CMAKE_CURRENT_LIST_DIR}/src/analysis/hpp/predict.h
 
     ${CMAKE_CURRENT_LIST_DIR}/src/controllers/cpp/mainwindow.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/controllers/cpp/verticatextdelegate.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/controllers/cpp/chartwindow.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/analysis/cpp/dbapi.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/analysis/cpp/dataprocessing.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/analysis/cpp/predict.cpp
@@ -95,13 +97,9 @@ target_link_libraries(gw-dss-cpp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_V
 #                                             DEPLOYMENT
 # ====================================================================================================
 
-add_custom_target(deployment)
-
 # windows deployment
-if(WIN32 AND TARGET deployment)
-    add_custom_command(TARGET gw-dss-cpp
-        POST_BUILD
-
+if(WIN32)
+    add_custom_target(deployment
         COMMAND ${CMAKE_COMMAND} -E remove_directory "${CMAKE_CURRENT_BINARY_DIR}/windeployqt"
 
         COMMAND windeployqt --dir "${CMAKE_BINARY_DIR}/windeployqt" --no-translations --release $<TARGET_FILE:gw-dss-cpp>

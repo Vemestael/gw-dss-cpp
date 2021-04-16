@@ -20,6 +20,7 @@
 #include "../../analysis/hpp/dataprocessing.h"
 #include "../../analysis/hpp/predict.h"
 #include "verticatextdelegate.h"
+#include "chartwindow.h"
 
 #define __APPLICATION_NAME__ "gw-dss-cpp"
 
@@ -41,6 +42,7 @@ private:
     Ui::MainWindow *ui;
     DbApi db;
     QSettings settings;
+    ChartWindow *cw;
 
     // window preparing
     void loadWindow(void);
@@ -64,5 +66,6 @@ private:
     void setStaffNumberTriggered(void);
     void setMaxQueueLengthTriggered(void);
     void switchLangTriggered(QString const &lang);
+    void showChartTriggered(ChartType type);
 };
 #endif // MAINWINDOW_H

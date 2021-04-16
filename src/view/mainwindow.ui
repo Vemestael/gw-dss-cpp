@@ -1315,13 +1315,23 @@
     <addaction name="ukLang"/>
     <addaction name="ruLang"/>
    </widget>
+   <widget class="QMenu" name="menuChart">
+    <property name="title">
+     <string>Chart</string>
+    </property>
+    <addaction name="actionChartTimescale"/>
+    <addaction name="actionChartByWeekDays"/>
+    <addaction name="actionChartByWorkShifts"/>
+    <addaction name="actionChartByHours"/>
+   </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
+   <addaction name="menuChart"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionDbPath">
    <property name="text">
-    <string>db path</string>
+    <string>Set db path</string>
    </property>
    <property name="font">
     <font>
@@ -1332,7 +1342,7 @@
   </action>
   <action name="actionHourlyPayment">
    <property name="text">
-    <string>hourly payment</string>
+    <string>Set hourly payment</string>
    </property>
    <property name="font">
     <font>
@@ -1390,7 +1400,7 @@
   </action>
   <action name="actionServedRequests">
    <property name="text">
-    <string>count served requests/h</string>
+    <string>Set count served requests/h</string>
    </property>
    <property name="font">
     <font>
@@ -1401,7 +1411,7 @@
   </action>
   <action name="actionStaffNumber">
    <property name="text">
-    <string>staff number</string>
+    <string>Set staff number</string>
    </property>
    <property name="font">
     <font>
@@ -1412,7 +1422,51 @@
   </action>
   <action name="actionMaxQueueLength">
    <property name="text">
-    <string>max queue length</string>
+    <string>Set max queue length</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionChartTimescale">
+   <property name="text">
+    <string>Timescale load</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionChartByWeekDays">
+   <property name="text">
+    <string>Load by week days</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionChartByWorkShifts">
+   <property name="text">
+    <string>Load by work shifts</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionChartByHours">
+   <property name="text">
+    <string>Load by hours</string>
    </property>
    <property name="font">
     <font>

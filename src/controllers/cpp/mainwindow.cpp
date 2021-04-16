@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete this->cw;
     delete ui;
 };
 
@@ -120,6 +121,15 @@ void MainWindow::setButtonsHandling(void)
             [this]() { this->switchLangTriggered("uk_UA"); });
     connect(this->ui->ruLang, &QAction::triggered, this,
             [this]() { this->switchLangTriggered("ru_RU"); });
+
+    connect(this->ui->actionChartTimescale, &QAction::triggered, this,
+            [this]() { this->showChartTriggered(ChartType::Timescale); });
+    connect(this->ui->actionChartByWeekDays, &QAction::triggered, this,
+            [this]() { this->showChartTriggered(ChartType::WeekDays); });
+    connect(this->ui->actionChartByWorkShifts, &QAction::triggered, this,
+            [this]() { this->showChartTriggered(ChartType::ByShifts); });
+    connect(this->ui->actionChartByHours, &QAction::triggered, this,
+            [this]() { this->showChartTriggered(ChartType::ByHours); });
 };
 
 // pressed event handlers
@@ -193,7 +203,7 @@ void MainWindow::analyzePressed(void)
     std::iota(personalCount.begin(), personalCount.end(), 1);
 
     QVector<QVector<double>> lambdaByShift = DataProcessing::getCountOfCallsByShift(
-            this->db.getCallsInfoByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
+            this->db.getCallsCountsByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
 
     for (size_t i = 0; i < lambdaByShift.length(); ++i) {
         auto predictTable = predictTables[i];
@@ -292,4 +302,29 @@ void MainWindow::switchLangTriggered(QString const &lang)
             QErrorMessage().showMessage(QErrorMessage::tr("Unable to install language"));
         }
     };
+};
+
+void MainWindow::showChartTriggered(ChartType type)
+{
+    QVector<QVector<double>> data;
+    switch(type) {
+        case ChartType::Timescale:
+            data = db.getCallsInfoByDate(this->ui->dateStart->date(), this->ui->dateEnd->date());
+            break;
+        case ChartType::WeekDays:
+            data = DataProcessing::getCountOfCallsByWeekDay(
+                this->db.getCallsCountsByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
+            break;
+        case ChartType::ByShifts:
+            data = DataProcessing::getCountOfCallsByShift(
+                this->db.getCallsCountsByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
+            break;
+        case ChartType::ByHours:
+            data = DataProcessing::getCountOfCallsByHour(
+                this->db.getCallsCountsByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
+            break;
+    }
+    
+    this->cw = new ChartWindow(type, data);
+    this->cw->show();
 };
