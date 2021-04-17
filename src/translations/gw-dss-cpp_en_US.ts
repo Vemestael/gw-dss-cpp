@@ -2,6 +2,64 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>ChartWindow</name>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="30"/>
+        <source>Mon</source>
+        <translation>Mon</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="30"/>
+        <source>Tue</source>
+        <translation>Tue</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="30"/>
+        <source>Wed</source>
+        <translation>Wed</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="30"/>
+        <source>Thu</source>
+        <translation>Thu</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="31"/>
+        <source>Fri</source>
+        <translation>Fri</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="31"/>
+        <source>Sat</source>
+        <translation>Sat</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="31"/>
+        <source>Sun</source>
+        <translation>Sun</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="36"/>
+        <source>Timescale load</source>
+        <translation>Timescale load</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="46"/>
+        <source>Load by week days</source>
+        <translation>Load by week days</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="58"/>
+        <source>Load by work shifts</source>
+        <translation>Load by work shifts</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="77"/>
+        <source>Load by hours</source>
+        <translation>Load by hours</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../view/mainwindow.ui" line="26"/>
@@ -122,117 +180,142 @@
         <translation>Language</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1324"/>
-        <source>db path</source>
-        <translation>db path</translation>
+        <location filename="../view/mainwindow.ui" line="1320"/>
+        <source>Chart</source>
+        <translation>Chart</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1393"/>
-        <source>count served requests/h</source>
-        <translation>count served requests/h</translation>
+        <location filename="../view/mainwindow.ui" line="1334"/>
+        <source>Set db path</source>
+        <translation>Set db path</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1404"/>
-        <source>staff number</source>
-        <translation>staff number</translation>
+        <location filename="../view/mainwindow.ui" line="1345"/>
+        <source>Set hourly payment</source>
+        <translation>Set hourly payment</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1415"/>
-        <source>max queue length</source>
-        <translation>max queue length</translation>
+        <location filename="../view/mainwindow.ui" line="1403"/>
+        <source>Set count served requests/h</source>
+        <translation>Set count served requests/h</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1335"/>
-        <source>hourly payment</source>
-        <translation>hourly payment</translation>
+        <location filename="../view/mainwindow.ui" line="1414"/>
+        <source>Set staff number</source>
+        <translation>Set staff number</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1346"/>
+        <location filename="../view/mainwindow.ui" line="1425"/>
+        <source>Set max queue length</source>
+        <translation>Set max queue length</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1436"/>
+        <source>Timescale load</source>
+        <translation>Timescale load</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1447"/>
+        <source>Load by week days</source>
+        <translation>Load by week days</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1458"/>
+        <source>Load by work shifts</source>
+        <translation>Load by work shifts</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1469"/>
+        <source>Load by hours</source>
+        <translation>Load by hours</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1356"/>
         <source>Exit</source>
         <translation>Exit</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1355"/>
+        <location filename="../view/mainwindow.ui" line="1365"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1360"/>
+        <location filename="../view/mainwindow.ui" line="1370"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1371"/>
+        <location filename="../view/mainwindow.ui" line="1381"/>
         <source>Українська</source>
         <translation>Українська</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1382"/>
+        <location filename="../view/mainwindow.ui" line="1392"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="63"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="65"/>
         <source>Shift 1</source>
         <translation>Shift 1</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="64"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="66"/>
         <source>Shift 2</source>
         <translation>Shift 2</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="65"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="67"/>
         <source>Shift 3</source>
         <translation>Shift 3</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="69"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="71"/>
         <source>Number of staff</source>
         <translation>Number of staff</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="70"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="72"/>
         <source>Requests processed</source>
         <translation>Requests processed</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="71"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="73"/>
         <source>Queue length</source>
         <translation>Queue length</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="75"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="77"/>
         <source>Personnel costs</source>
         <translation>Personnel costs</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="76"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="78"/>
         <source>Requests cost</source>
         <translation>Requests cost</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="86"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="88"/>
         <source>Maximum requests</source>
         <translation>Maximum requests</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="87"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="89"/>
         <source>Optimally</source>
         <translation>Optimally</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="88"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="90"/>
         <source>Min. queue</source>
         <translation>Min. queue</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="231"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="242"/>
         <source>Open File</source>
         <translation>Open File</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="231"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="242"/>
         <source>DB file (*.db *.sqlite)</source>
         <translation>DB file (*.db *.sqlite)</translation>
     </message>
@@ -245,13 +328,13 @@
         <translation>Invalid database</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="130"/>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="159"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="141"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="170"/>
         <source>Empty dataset</source>
         <translation>Empty dataset</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="292"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="304"/>
         <source>Unable to install language</source>
         <translation>Unable to install language</translation>
     </message>

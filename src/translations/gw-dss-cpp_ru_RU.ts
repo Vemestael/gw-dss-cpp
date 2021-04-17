@@ -2,6 +2,64 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru_RU">
 <context>
+    <name>ChartWindow</name>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="30"/>
+        <source>Mon</source>
+        <translation>Пн</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="30"/>
+        <source>Tue</source>
+        <translation>Вт</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="30"/>
+        <source>Wed</source>
+        <translation>Ср</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="30"/>
+        <source>Thu</source>
+        <translation>Чт</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="31"/>
+        <source>Fri</source>
+        <translation>Пт</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="31"/>
+        <source>Sat</source>
+        <translation>Сб</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="31"/>
+        <source>Sun</source>
+        <translation>Вс</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="36"/>
+        <source>Timescale load</source>
+        <translation>Нагрузка по временной шкале</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="46"/>
+        <source>Load by week days</source>
+        <translation>Нагрузка по дням недели</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="58"/>
+        <source>Load by work shifts</source>
+        <translation>Нагрузка по сменам</translation>
+    </message>
+    <message>
+        <location filename="../controllers/cpp/chartwindow.cpp" line="77"/>
+        <source>Load by hours</source>
+        <translation>Нагрузка по часам</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../view/mainwindow.ui" line="26"/>
@@ -122,117 +180,142 @@
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1324"/>
-        <source>db path</source>
-        <translation>путь к бд</translation>
+        <location filename="../view/mainwindow.ui" line="1320"/>
+        <source>Chart</source>
+        <translation>Диаграмма</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1393"/>
-        <source>count served requests/h</source>
-        <translation>кол-во обслуженных заявок/ч</translation>
+        <location filename="../view/mainwindow.ui" line="1334"/>
+        <source>Set db path</source>
+        <translation>Задать путь к бд</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1404"/>
-        <source>staff number</source>
-        <translation>кол-во сотрудников</translation>
+        <location filename="../view/mainwindow.ui" line="1345"/>
+        <source>Set hourly payment</source>
+        <translation>Задать стоимость часа работы</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1415"/>
-        <source>max queue length</source>
-        <translation>макс. длина очереди</translation>
+        <location filename="../view/mainwindow.ui" line="1403"/>
+        <source>Set count served requests/h</source>
+        <translation>Задать кол-во обслуженных заявок/ч</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1335"/>
-        <source>hourly payment</source>
-        <translation>стоимость часа работы</translation>
+        <location filename="../view/mainwindow.ui" line="1414"/>
+        <source>Set staff number</source>
+        <translation>Задать кол-во сотрудников</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1346"/>
+        <location filename="../view/mainwindow.ui" line="1425"/>
+        <source>Set max queue length</source>
+        <translation>Задать макс. длину очереди</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1436"/>
+        <source>Timescale load</source>
+        <translation>Нагрузка по временной шкале</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1447"/>
+        <source>Load by week days</source>
+        <translation>Нагрузка по дням недели</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1458"/>
+        <source>Load by work shifts</source>
+        <translation>Нагрузка по сменам</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1469"/>
+        <source>Load by hours</source>
+        <translation>Нагрузка по часам</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1356"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1355"/>
+        <location filename="../view/mainwindow.ui" line="1365"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1360"/>
+        <location filename="../view/mainwindow.ui" line="1370"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1371"/>
+        <location filename="../view/mainwindow.ui" line="1381"/>
         <source>Українська</source>
         <translation>Українська</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1382"/>
+        <location filename="../view/mainwindow.ui" line="1392"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="63"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="65"/>
         <source>Shift 1</source>
         <translation>Смена 1</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="64"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="66"/>
         <source>Shift 2</source>
         <translation>Смена 2</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="65"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="67"/>
         <source>Shift 3</source>
         <translation>Смена 3</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="69"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="71"/>
         <source>Number of staff</source>
         <translation>Количество персонала</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="70"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="72"/>
         <source>Requests processed</source>
         <translation>Обработанных заявок</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="71"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="73"/>
         <source>Queue length</source>
         <translation>Длина очереди</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="75"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="77"/>
         <source>Personnel costs</source>
         <translation>Стоимость персонала</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="76"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="78"/>
         <source>Requests cost</source>
         <translation>Стоимость заявки</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="86"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="88"/>
         <source>Maximum requests</source>
         <translation>Максимум заявок</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="87"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="89"/>
         <source>Optimally</source>
         <translation>Оптимально</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="88"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="90"/>
         <source>Min. queue</source>
         <translation>Мин. очередь</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="231"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="242"/>
         <source>Open File</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="231"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="242"/>
         <source>DB file (*.db *.sqlite)</source>
         <translation>Файл БД (*.db *.sqlite)</translation>
     </message>
@@ -245,13 +328,13 @@
         <translation>Неверная база данных</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="130"/>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="159"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="141"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="170"/>
         <source>Empty dataset</source>
         <translation>Пустой набор данных</translation>
     </message>
     <message>
-        <location filename="../controllers/cpp/mainwindow.cpp" line="292"/>
+        <location filename="../controllers/cpp/mainwindow.cpp" line="304"/>
         <source>Unable to install language</source>
         <translation>Невозможно установить язык</translation>
     </message>
