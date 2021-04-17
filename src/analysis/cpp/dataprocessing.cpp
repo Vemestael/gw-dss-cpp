@@ -1,6 +1,7 @@
 #include "../hpp/dataprocessing.h"
 
-QVector<QVector<double>> DataProcessing::getCountOfCallsByWeekDay(QVector<QVector<double>> inputData)
+QVector<QVector<double>>
+DataProcessing::getCountOfCallsByWeekDay(QVector<QVector<double>> inputData)
 {
     QVector<QVector<double>> days;
     double day = 0;

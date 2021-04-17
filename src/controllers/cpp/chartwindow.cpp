@@ -9,13 +9,11 @@ static QVector<double> genRange(int lower, int upper)
 };
 
 ChartWindow::ChartWindow(ChartType type, QVector<QVector<double>> data, QWidget *parent)
-    : QWidget(parent)
+    : customPlot(new QCustomPlot()), layout(new QGridLayout(this)), QWidget(parent)
 {
     this->setBaseSize(800, 600);
     this->setMinimumSize(800, 600);
 
-    this->customPlot = new QCustomPlot();
-    this->layout = new QGridLayout(this);
     this->layout->addWidget(this->customPlot, 0, 0, 1, 1);
 
     this->plot(type, data);
@@ -50,7 +48,7 @@ void ChartWindow::plot(ChartType type, QVector<QVector<double>> data)
         QSharedPointer<QCPAxisTickerText> xTicker(new QCPAxisTickerText);
 
         // setting up X-axis ticks key:value
-        xTicker->addTicks(genRange(1, 8), weekDays);
+        xTicker->addTicks(genRange(1, 8) /* 7 week days */, weekDays);
 
         this->decorate(false, false, false, false, true, 0);
         this->plotHistogram(xTicker, data);
@@ -69,7 +67,7 @@ void ChartWindow::plot(ChartType type, QVector<QVector<double>> data)
         }
 
         // setting up X-axis ticks key:value
-        xTicker->addTicks(genRange(1, 22), labels);
+        xTicker->addTicks(genRange(1, 22) /* 7 week days * 3 shifts */, labels);
 
         this->decorate(false, false, false, false, true, 30);
         this->plotHistogram(xTicker, data);
@@ -88,7 +86,7 @@ void ChartWindow::plot(ChartType type, QVector<QVector<double>> data)
         }
 
         // setting up X-axis ticks key:value
-        xTicker->addTicks(genRange(1, 169), labels);
+        xTicker->addTicks(genRange(1, 169 /* 7 week days * 24 hours */), labels);
 
         this->decorate(true, false, true, false, true, 45);
         this->plotHistogram(xTicker, data);

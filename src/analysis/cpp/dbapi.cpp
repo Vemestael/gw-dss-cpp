@@ -42,7 +42,8 @@ QDate DbApi::getLastDate(void) const
     return query.value(0).toDate();
 }
 
-QVector<QVector<double>> DbApi::getCallsCountsByDate(QDate const &dateStart, QDate const &dateEnd) const
+QVector<QVector<double>> DbApi::getCallsCountsByDate(QDate const &dateStart,
+                                                     QDate const &dateEnd) const
 {
     QDate firstDate = this->getFirstDate();
     QDate lastDate = this->getLastDate();
@@ -83,7 +84,8 @@ QVector<QVector<double>> DbApi::getCallsCountsByDate(QDate const &dateStart, QDa
     return results;
 }
 
-QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart, QDate const &dateEnd) const
+QVector<QVector<double>> DbApi::getCallsInfoByDate(QDate const &dateStart,
+                                                   QDate const &dateEnd) const
 {
     QDate firstDate = this->getFirstDate();
     QDate lastDate = this->getLastDate();

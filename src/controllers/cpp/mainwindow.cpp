@@ -4,7 +4,8 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
-      settings(QSettings::IniFormat, QSettings::UserScope, __APPLICATION_NAME__)
+      settings(QSettings::IniFormat, QSettings::UserScope, __APPLICATION_NAME__),
+      cw(nullptr)
 {
     ui->setupUi(this);
     this->loadWindow();

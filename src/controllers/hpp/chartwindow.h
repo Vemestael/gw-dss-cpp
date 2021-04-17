@@ -30,7 +30,8 @@ private:
     QCustomPlot *customPlot;
 
     void plot(ChartType type, QVector<QVector<double>> data);
-    void plotTimeDataGraph(QSharedPointer<QCPAxisTickerDateTime> dateTicker, QVector<QVector<double>> data);
+    void plotTimeDataGraph(QSharedPointer<QCPAxisTickerDateTime> dateTicker,
+                           QVector<QVector<double>> data);
     void plotHistogram(QSharedPointer<QCPAxisTickerText> xTicker, QVector<QVector<double>> data);
     void decorate(bool zoomH, bool zoomV, bool dragH, bool dragV, bool grid, double labelAngle);
 };
