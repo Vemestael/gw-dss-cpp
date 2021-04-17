@@ -10,6 +10,7 @@
 #include <QVector>
 #include <QString>
 #include <QDateTime>
+#include <QTranslator>
 
 #include <qcustomplot.h>
 
@@ -22,7 +23,7 @@ class ChartWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit ChartWindow(ChartType type, QVector<QVector<double>> data, QWidget *parent = nullptr);
+    explicit ChartWindow(ChartType type, QVector<QVector<double>> data, QString const &lang, QWidget *parent = nullptr);
     ~ChartWindow(void);
 
 private:

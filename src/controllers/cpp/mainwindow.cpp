@@ -326,7 +326,8 @@ void MainWindow::showChartTriggered(ChartType type)
                 this->ui->dateStart->date(), this->ui->dateEnd->date()));
         break;
     }
-
-    this->cw = new ChartWindow(type, data);
+    
+    QString lang = this->settings.value("lang", "en").toString();
+    this->cw = new ChartWindow(type, data, QString(__APPLICATION_NAME__) + "_" + lang);
     this->cw->show();
 };

@@ -8,9 +8,15 @@ static QVector<double> genRange(int lower, int upper)
     return vec;
 };
 
-ChartWindow::ChartWindow(ChartType type, QVector<QVector<double>> data, QWidget *parent)
+ChartWindow::ChartWindow(ChartType type, QVector<QVector<double>> data, QString const &lang, QWidget *parent)
     : customPlot(new QCustomPlot()), layout(new QGridLayout(this)), QWidget(parent)
 {
+    QTranslator translator;
+    if(translator.load(lang, "./translations/")){
+        if(!qApp->installTranslator(&translator)){
+            QErrorMessage().showMessage(QErrorMessage::tr("Unable to install language"));
+        }
+    }
     this->setBaseSize(800, 600);
     this->setMinimumSize(800, 600);
 
