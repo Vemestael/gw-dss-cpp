@@ -13,10 +13,7 @@
 
 #include <qcustomplot.h>
 
-enum class ChartType
-{
-    Timescale, WeekDays, ByShifts, ByHours
-};
+enum class ChartType { Timescale, WeekDays, ByShifts, ByHours };
 
 class ChartWindow : public QWidget
 {
@@ -29,8 +26,6 @@ public:
 private:
     QGridLayout *layout;
     QCustomPlot *customPlot;
-    QCPGraph *graphic;
-
 
     void initPlot(ChartType type, QVector<QVector<double>> data);
 };

@@ -46,7 +46,7 @@ private:
 
     // window preparing
     void loadWindow(void);
-    void loadSettings(void);    
+    void loadSettings(void);
     void setDate(void);
     void setTablesHeaders(void);
     void setButtonsHandling(void);
