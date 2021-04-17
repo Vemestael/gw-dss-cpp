@@ -1,7 +1,8 @@
 #include "../hpp/predict.h"
 
-QVector<QVector<double>> Predict::getCharacteristics(QVector<unsigned> channelCountArr, unsigned queueCount,
-                                                     double la, double mu, double nu, double n)
+QVector<QVector<double>> Predict::getCharacteristics(QVector<unsigned> channelCountArr,
+                                                     unsigned queueCount, double la, double mu,
+                                                     double nu, double n)
 {
     QVector<double> avgQueueArr, countServedReqArr;
 

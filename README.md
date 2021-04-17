@@ -23,11 +23,12 @@ $ cmake -B ./build -G <preferred generator>
 
 5. Then run build command:
 ```
-$ cmake --build ./build --config <Debug|Release> --target <gw-dss-cpp|deployment|all>
+$ cmake --build ./build --config <Debug|Release> --target <gw-dss-cpp|deployment|make-lupdate|all>
 ```
-> As you can see, there are two available targets:
-> * gw-dss-cpp - build application independently:
-> * deployment - run deployment(only on Windows).
+> As you can see, there are three available targets:
+> * gw-dss-cpp - build application independently;
+> * deployment - run deployment(only on Windows);
+> * make-lupdate - update available translations.
 
 6. You've done! The builded binary file(s) available in the build directory.
 

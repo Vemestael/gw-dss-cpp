@@ -27,7 +27,8 @@ public:
 
     QDate getFirstDate(void) const;
     QDate getLastDate(void) const;
-    QVector<QVector<double>> getCallsCountsByDate(QDate const &dateStart, QDate const &dateEnd) const;
+    QVector<QVector<double>> getCallsCountsByDate(QDate const &dateStart,
+                                                  QDate const &dateEnd) const;
     QVector<QVector<double>> getCallsInfoByDate(QDate const &dateStart, QDate const &dateEnd) const;
 
 private:

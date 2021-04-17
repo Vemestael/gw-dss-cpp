@@ -4,7 +4,8 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
-      settings(QSettings::IniFormat, QSettings::UserScope, __APPLICATION_NAME__)
+      settings(QSettings::IniFormat, QSettings::UserScope, __APPLICATION_NAME__),
+      cw(nullptr)
 {
     ui->setupUi(this);
     this->loadWindow();
@@ -211,8 +212,8 @@ void MainWindow::analyzePressed(void)
 
         for (size_t j = 0; j < lambdaByShift[i].length(); ++j) {
             size_t index = 1;
-            QVector<QVector<double>> predicts =
-                    Predict::getPredict(personalCount, queueLength, lambdaByShift[i][j], servedRequirements);
+            QVector<QVector<double>> predicts = Predict::getPredict(
+                    personalCount, queueLength, lambdaByShift[i][j], servedRequirements);
 
             for (auto &&predict : predicts) {
                 for (auto &&characteristic : predict) {
@@ -259,8 +260,9 @@ void MainWindow::setHourlyPaymentTriggered(void)
 void MainWindow::setServedRequestsTriggered(void)
 {
     bool ok;
-    double count = QInputDialog::getDouble(this, "Count served requirements", "Enter count of served requirements per hour by one person", 0, 0,
-                                          2147483647, 2, &ok);
+    double count = QInputDialog::getDouble(
+            this, "Count served requirements",
+            "Enter count of served requirements per hour by one person", 0, 0, 2147483647, 2, &ok);
     if (ok) {
         this->settings.setValue("servedRequirements", count);
         this->settings.sync();
@@ -281,8 +283,8 @@ void MainWindow::setStaffNumberTriggered(void)
 void MainWindow::setMaxQueueLengthTriggered(void)
 {
     bool ok;
-    unsigned queueLength = QInputDialog::getInt(this, "Max queue length", "Enter maximum queue length", 0, 0,
-                                          2147483647, 2, &ok);
+    unsigned queueLength = QInputDialog::getInt(
+            this, "Max queue length", "Enter maximum queue length", 0, 0, 2147483647, 2, &ok);
     if (ok) {
         this->settings.setValue("queueLength", queueLength);
         this->settings.sync();
@@ -307,24 +309,24 @@ void MainWindow::switchLangTriggered(QString const &lang)
 void MainWindow::showChartTriggered(ChartType type)
 {
     QVector<QVector<double>> data;
-    switch(type) {
-        case ChartType::Timescale:
-            data = db.getCallsInfoByDate(this->ui->dateStart->date(), this->ui->dateEnd->date());
-            break;
-        case ChartType::WeekDays:
-            data = DataProcessing::getCountOfCallsByWeekDay(
-                this->db.getCallsCountsByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
-            break;
-        case ChartType::ByShifts:
-            data = DataProcessing::getCountOfCallsByShift(
-                this->db.getCallsCountsByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
-            break;
-        case ChartType::ByHours:
-            data = DataProcessing::getCountOfCallsByHour(
-                this->db.getCallsCountsByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
-            break;
+    switch (type) {
+    case ChartType::Timescale:
+        data = db.getCallsInfoByDate(this->ui->dateStart->date(), this->ui->dateEnd->date());
+        break;
+    case ChartType::WeekDays:
+        data = DataProcessing::getCountOfCallsByWeekDay(this->db.getCallsCountsByDate(
+                this->ui->dateStart->date(), this->ui->dateEnd->date()));
+        break;
+    case ChartType::ByShifts:
+        data = DataProcessing::getCountOfCallsByShift(this->db.getCallsCountsByDate(
+                this->ui->dateStart->date(), this->ui->dateEnd->date()));
+        break;
+    case ChartType::ByHours:
+        data = DataProcessing::getCountOfCallsByHour(this->db.getCallsCountsByDate(
+                this->ui->dateStart->date(), this->ui->dateEnd->date()));
+        break;
     }
-    
+
     this->cw = new ChartWindow(type, data);
     this->cw->show();
 };

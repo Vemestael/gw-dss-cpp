@@ -25,12 +25,8 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS src/view)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Sql PrintSupport REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Sql PrintSupport REQUIRED)
 
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/3rd_party/qcustomplot EXCLUDE_FROM_ALL)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/extern/qtm-calc EXCLUDE_FROM_ALL)
-
-add_library(qcustomplot SHARED)
-target_sources(qcustomplot PRIVATE ${CMAKE_CURRENT_LIST_DIR}/3rd_party/qcustomplot/qcustomplot.cpp)
-target_link_libraries(qcustomplot PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::PrintSupport)
-target_include_directories(qcustomplot PUBLIC ${CMAKE_CURRENT_LIST_DIR}/3rd_party/qcustomplot)
 
 # ====================================================================================================
 #                                        TRANSLATIONS & SOURCES

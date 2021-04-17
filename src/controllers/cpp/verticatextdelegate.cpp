@@ -7,12 +7,15 @@ void VerticalTextDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
 {
     QStyleOptionViewItem optionCopy = option;
     QPointF rectCenter = QRectF(option.rect).center();
+
     painter->save();
     painter->translate(rectCenter.x(), rectCenter.y());
     painter->rotate(-90.0);
     painter->translate(-rectCenter.x(), -rectCenter.y());
+
     optionCopy.rect = painter->worldTransform().mapRect(option.rect);
     QStyledItemDelegate::paint(painter, optionCopy, index);
+    
     painter->restore();
 }
 

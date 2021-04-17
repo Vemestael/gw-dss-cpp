@@ -1,6 +1,7 @@
 #include "../hpp/dataprocessing.h"
 
-QVector<QVector<double>> DataProcessing::getCountOfCallsByWeekDay(QVector<QVector<double>> inputData)
+QVector<QVector<double>>
+DataProcessing::getCountOfCallsByWeekDay(QVector<QVector<double>> inputData)
 {
     QVector<QVector<double>> days;
     double day = 0;
@@ -23,7 +24,7 @@ QVector<QVector<double>> DataProcessing::getCountOfCallsByShift(QVector<QVector<
 {
     QVector<QVector<double>> days;
     QVector<double> shiftAvg;
-    double shift = 0;    
+    double shift = 0;
 
     for (size_t i = 1; i <= inputData.length(); ++i) {
         shift += inputData[i - 1][2];
@@ -44,7 +45,7 @@ QVector<QVector<double>> DataProcessing::getCountOfCallsByHour(QVector<QVector<d
 {
     QVector<QVector<double>> days;
     QVector<double> day;
-    double shift = 0;    
+    double shift = 0;
 
     for (size_t i = 1; i <= inputData.length(); ++i) {
         day.append(inputData[i - 1][2]);
