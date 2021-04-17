@@ -103,6 +103,7 @@ if(WIN32)
         COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:gw-dss-cpp>" "${CMAKE_CURRENT_BINARY_DIR}/windeployqt/$<TARGET_FILE_NAME:gw-dss-cpp>"
 
         COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:libqtmcalc>" "${CMAKE_CURRENT_BINARY_DIR}/windeployqt/$<TARGET_FILE_NAME:libqtmcalc>"
+        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:qcustomplot>" "${CMAKE_CURRENT_BINARY_DIR}/windeployqt/$<TARGET_FILE_NAME:qcustomplot>"
     )
 endif()
 
