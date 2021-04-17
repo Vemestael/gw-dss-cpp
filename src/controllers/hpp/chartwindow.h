@@ -15,6 +15,8 @@
 
 enum class ChartType { Timescale, WeekDays, ByShifts, ByHours };
 
+static QVector<double> genRange(int lower, int upper);
+
 class ChartWindow : public QWidget
 {
     Q_OBJECT
@@ -27,7 +29,10 @@ private:
     QGridLayout *layout;
     QCustomPlot *customPlot;
 
-    void initPlot(ChartType type, QVector<QVector<double>> data);
+    void plot(ChartType type, QVector<QVector<double>> data);
+    void plotTimeDataGraph(QSharedPointer<QCPAxisTickerDateTime> dateTicker, QVector<QVector<double>> data);
+    void plotHistogram(QSharedPointer<QCPAxisTickerText> xTicker, QVector<QVector<double>> data);
+    void decorate(bool zoomH, bool zoomV, bool dragH, bool dragV, bool grid, double labelAngle);
 };
 
 #endif // CHARTWINDOW_H
