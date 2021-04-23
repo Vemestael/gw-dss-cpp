@@ -22,8 +22,8 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS src/view)
 #                                            DEPENDENCIES
 # ====================================================================================================
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Sql PrintSupport REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Sql PrintSupport REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Sql REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Sql REQUIRED)
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/3rd_party/qcustomplot EXCLUDE_FROM_ALL)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/extern/qtm-calc EXCLUDE_FROM_ALL)
