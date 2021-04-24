@@ -17,7 +17,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS src/view)
 
-
 # ====================================================================================================
 #                                            DEPENDENCIES
 # ====================================================================================================
@@ -36,6 +35,10 @@ set(TS_FILES
     ${CMAKE_CURRENT_LIST_DIR}/src/translations/gw-dss-cpp_en_US.ts
     ${CMAKE_CURRENT_LIST_DIR}/src/translations/gw-dss-cpp_uk_UA.ts
     ${CMAKE_CURRENT_LIST_DIR}/src/translations/gw-dss-cpp_ru_RU.ts
+)
+
+set(PROJECT_RESOURCES
+    ${CMAKE_CURRENT_LIST_DIR}/src/resources/resources.qrc
 )
 
 set(PROJECT_SOURCES
@@ -58,8 +61,8 @@ set(PROJECT_SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/src/view/mainwindow.ui
 
     ${TS_FILES}
+    ${PROJECT_RESOURCES}
 )
-
 
 # ====================================================================================================
 #                                            BUILD RULES

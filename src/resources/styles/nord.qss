@@ -1,0 +1,76 @@
+/* Set color for window and window text */
+
+QMainWindow {
+    background-color: #2E3440;
+}
+
+QLabel {
+    color: #E5E9F0;
+}
+
+/* Set color for menu and menu text */
+
+QMenuBar {
+    background-color: #3B4252;
+}
+
+QMenuBar::item {
+    color: #E5E9F0;
+}
+
+QMenuBar::item:selected {
+    background-color: #E5E9F0;
+    color: #3B4252;
+}
+
+QMenu {
+    background-color: #3B4252;
+    color: #E5E9F0;
+}
+
+/* Set color for button and button text */
+
+QPushButton {
+    background-color: #3B4252;
+    color: #E5E9F0;
+    border-radius: 3px;
+    border: 1px solid #E5E9F0;
+    padding: 5px 10px;
+}
+
+QPushButton:pressed {
+    background-color: #E5E9F0;
+    color: #3B4252;
+    border-radius: 3px;
+    border: 1px solid #3B4252;
+    padding: 5px 10px;
+}
+
+/* Set color for date edit and date edit text */
+
+QDateEdit {
+    background-color: #3B4252;
+    color: #E5E9F0;
+}
+
+/* Set color for tab widget */
+
+QTabBar::tab {
+    background-color: #434C5E;
+    color: #E5E9F0;
+    border: 1px solid #E5E9F0;
+    padding: 5px 10px;
+}
+
+QTabBar::tab:selected {
+    background-color: #E5E9F0;
+    color: #434C5E;
+    border: 1px solid #434C5E;
+}
+
+/* Set color for widget */
+
+QTabWidget QWidget {
+    background-color: #4C566A;
+    color: #E5E9F0;
+}

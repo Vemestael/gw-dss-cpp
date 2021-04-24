@@ -238,6 +238,9 @@
          <pointsize>16</pointsize>
         </font>
        </property>
+       <property name="displayFormat">
+        <string>yyyy-dd-MM</string>
+       </property>
       </widget>
      </item>
      <item>
@@ -260,6 +263,9 @@
          <family>Times New Roman</family>
          <pointsize>16</pointsize>
         </font>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy-dd-MM</string>
        </property>
       </widget>
      </item>
@@ -318,6 +324,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="analyze">
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -433,7 +445,7 @@
      <widget class="QTabWidget" name="tabWidget">
       <property name="geometry">
        <rect>
-        <x>-10</x>
+        <x>0</x>
         <y>0</y>
         <width>595</width>
         <height>640</height>
@@ -856,7 +868,7 @@
      <widget class="QTabWidget" name="tabWidget_3">
       <property name="geometry">
        <rect>
-        <x>-10</x>
+        <x>0</x>
         <y>0</y>
         <width>595</width>
         <height>640</height>
@@ -869,7 +881,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_10">
        <attribute name="title">
@@ -1476,6 +1488,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resurses.qrc"/>
+ </resources>
  <connections/>
 </ui>
