@@ -1,4 +1,4 @@
-#include "../hpp/verticatextdelegate.h"
+#include <gw-dss-cpp/controllers/verticaltextdelegate.h>
 
 VerticalTextDelegate::VerticalTextDelegate(QObject *parent) : QStyledItemDelegate(parent) {};
 

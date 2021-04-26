@@ -2,7 +2,7 @@
 #ifndef DATAPROCESSING_H
 #define DATAPROCESSING_H
 
-#include "./dbapi.h"
+#include <gw-dss-cpp/analysis/dbapi.h>
 
 class DataProcessing
 {

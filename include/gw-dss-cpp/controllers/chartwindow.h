@@ -12,7 +12,7 @@
 #include <QDateTime>
 #include <QTranslator>
 
-#include <qcustomplot.h>
+#include <qcustomplot/qcustomplot.h>
 
 enum class ChartType { Timescale, WeekDays, ByShifts, ByHours };
 
@@ -29,7 +29,7 @@ public:
 private:
     QGridLayout *layout;
     QCustomPlot *customPlot;
-
+    
     void plot(ChartType type, QVector<QVector<double>> data);
     void plotTimeDataGraph(QSharedPointer<QCPAxisTickerDateTime> dateTicker,
                            QVector<QVector<double>> data);

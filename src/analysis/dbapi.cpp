@@ -1,4 +1,4 @@
-#include "../hpp/dbapi.h"
+#include <gw-dss-cpp/analysis/dbapi.h>
 
 void DbApi::connectToDataBase(QString const &path)
 {

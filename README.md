@@ -43,4 +43,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## Credits
 
 * [Qt Framework](https://github.com/qt) by [The Qt Company](https://www.qt.io/)
-* [qtm-calc](https://github.com/andinoriel/qtm-calc/) by [andinoriel](https://github.com/andinoriel/)
+* [qtm-calc-shared](https://github.com/andinoriel/qtm-calc-shared/) by [andinoriel](https://github.com/andinoriel/)

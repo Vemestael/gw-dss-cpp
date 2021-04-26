@@ -16,11 +16,12 @@
 #include <QVector>
 #include <QLocale>
 
-#include "../../analysis/hpp/dbapi.h"
-#include "../../analysis/hpp/dataprocessing.h"
-#include "../../analysis/hpp/predict.h"
-#include "verticatextdelegate.h"
-#include "chartwindow.h"
+#include <gw-dss-cpp/analysis/dbapi.h>
+#include <gw-dss-cpp/analysis/dataprocessing.h>
+#include <gw-dss-cpp/analysis/predict.h>
+
+#include <gw-dss-cpp/controllers/verticaltextdelegate.h>
+#include <gw-dss-cpp/controllers/chartwindow.h>
 
 #define __APPLICATION_NAME__ "gw-dss-cpp"
 
