@@ -1,0 +1,3 @@
+[submodule "extern/qtm-calc-shared"]
+	path = extern/qtm-calc-shared
+	url = https://github.com/Andinoriel/qtm-calc-shared.git
