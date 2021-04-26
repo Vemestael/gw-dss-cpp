@@ -1,4 +1,8 @@
-#include "../hpp/chartwindow.h"
+#include <gw-dss-cpp/controllers/chartwindow.h>
+
+// little trick to force cmake link with Qt::PrintSupport
+// TODO: fix it
+[[maybe_unused]] static auto __unused = QPrinterInfo::defaultPrinter();
 
 static QVector<double> genRange(int lower, int upper)
 {
@@ -9,8 +13,9 @@ static QVector<double> genRange(int lower, int upper)
 };
 
 ChartWindow::ChartWindow(ChartType type, QVector<QVector<double>> data, QString const &lang, QWidget *parent)
-    : customPlot(new QCustomPlot()), layout(new QGridLayout(this)), QWidget(parent)
+    : customPlot(new QCustomPlot(this)), layout(new QGridLayout(this)), QWidget(parent)
 {
+
     QTranslator translator;
     if(translator.load(lang, "./translations/")){
         if(!qApp->installTranslator(&translator)){
@@ -41,7 +46,7 @@ void ChartWindow::plot(ChartType type, QVector<QVector<double>> data)
     case ChartType::Timescale: {
         this->customPlot->yAxis->setLabel(tr("Timescale load"));
 
-        QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
+        QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime());
         dateTicker->setDateTimeFormat("dd.MM.yyyy HH:00");
 
         this->decorate(true, false, true, false, true, 0);
@@ -51,7 +56,7 @@ void ChartWindow::plot(ChartType type, QVector<QVector<double>> data)
     case ChartType::WeekDays: {
         this->customPlot->yAxis->setLabel(tr("Load by week days"));
 
-        QSharedPointer<QCPAxisTickerText> xTicker(new QCPAxisTickerText);
+        QSharedPointer<QCPAxisTickerText> xTicker(new QCPAxisTickerText());
 
         // setting up X-axis ticks key:value
         xTicker->addTicks(genRange(1, 8) /* 7 week days */, weekDays);
@@ -63,7 +68,7 @@ void ChartWindow::plot(ChartType type, QVector<QVector<double>> data)
     case ChartType::ByShifts: {
         this->customPlot->yAxis->setLabel(tr("Load by work shifts"));
 
-        QSharedPointer<QCPAxisTickerText> xTicker(new QCPAxisTickerText);
+        QSharedPointer<QCPAxisTickerText> xTicker(new QCPAxisTickerText());
 
         QVector<QString> labels;
         for (auto &&weekDay : weekDays) {
@@ -82,7 +87,7 @@ void ChartWindow::plot(ChartType type, QVector<QVector<double>> data)
     case ChartType::ByHours: {
         this->customPlot->yAxis->setLabel(tr("Load by hours"));
 
-        QSharedPointer<QCPAxisTickerText> xTicker(new QCPAxisTickerText);
+        QSharedPointer<QCPAxisTickerText> xTicker(new QCPAxisTickerText());
 
         QVector<QString> labels;
         for (auto &&weekDay : weekDays) {

@@ -1,4 +1,4 @@
-#include "../hpp/predict.h"
+#include <gw-dss-cpp/analysis/predict.h>
 
 QVector<QVector<double>> Predict::getCharacteristics(QVector<unsigned> channelCountArr,
                                                      unsigned queueCount, double la, double mu,

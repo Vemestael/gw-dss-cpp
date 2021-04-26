@@ -1,4 +1,4 @@
-#include "../hpp/dataprocessing.h"
+#include <gw-dss-cpp/analysis/dataprocessing.h>
 
 QVector<QVector<double>>
 DataProcessing::getCountOfCallsByWeekDay(QVector<QVector<double>> inputData)

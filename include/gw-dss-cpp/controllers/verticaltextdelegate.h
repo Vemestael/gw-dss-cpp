@@ -1,6 +1,6 @@
 #pragma once
-#ifndef VERTICATEXTDELEGATE_H
-#define VERTICATEXTDELEGATE_H
+#ifndef VERTICALTEXTDELEGATE_H
+#define VERTICALTEXTDELEGATE_H
 
 #include <QtWidgets>
 
@@ -16,4 +16,4 @@ public:
                            const QModelIndex &index) const override;
 };
 
-#endif // VERTICATEXTDELEGATE_H
+#endif // VERTICALTEXTDELEGATE_H

@@ -1,5 +1,6 @@
-#include "../hpp/mainwindow.h"
 #include "./ui_mainwindow.h"
+
+#include <gw-dss-cpp/controllers/mainwindow.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),

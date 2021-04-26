@@ -2,11 +2,11 @@
 #ifndef PREDICT_H
 #define PREDICT_H
 
-#include <qtm-core.hpp>
-#include <qtm-data.hpp>
-
 #include <QVector>
 #include <QString>
+
+#include <qtm-calc/core.hpp>
+#include <qtm-calc/data.hpp>
 
 class Predict
 {

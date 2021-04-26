@@ -1,6 +1,6 @@
-#include "controllers/hpp/mainwindow.h"
-
 #include <QApplication>
+
+#include <gw-dss-cpp/controllers/mainwindow.h>
 
 int main(int argc, char *argv[])
 {
