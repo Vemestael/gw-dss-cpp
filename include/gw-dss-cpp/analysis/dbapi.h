@@ -14,6 +14,8 @@
 #include <QStringList>
 #include <QErrorMessage>
 
+#include <gw-dss-cpp/controllers/errorwindow.h>
+
 class DbApi
 {
 public:

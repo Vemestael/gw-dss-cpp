@@ -12,6 +12,8 @@
 #include <QDateTime>
 #include <QTranslator>
 
+#include <gw-dss-cpp/controllers/errorwindow.h>
+
 #include <qcustomplot/qcustomplot.h>
 
 enum class ChartType { Timescale, WeekDays, ByShifts, ByHours };

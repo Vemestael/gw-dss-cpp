@@ -8,7 +8,7 @@ void DbApi::connectToDataBase(QString const &path)
         this->db.open();
         if (!this->isValidDataBase()) {
             this->disconnectFromDataBase();
-            QErrorMessage().showMessage(QErrorMessage::tr("Invalid database"));
+            ErrorWindow(ErrorWindow::tr("Invalid database"));
         }
     }
 }

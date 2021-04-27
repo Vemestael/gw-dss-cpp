@@ -22,6 +22,7 @@
 
 #include <gw-dss-cpp/controllers/verticaltextdelegate.h>
 #include <gw-dss-cpp/controllers/chartwindow.h>
+#include <gw-dss-cpp/controllers/errorwindow.h>
 
 #define __APPLICATION_NAME__ "gw-dss-cpp"
 

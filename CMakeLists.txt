@@ -41,17 +41,20 @@ set(PROJECT_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/include/gw-dss-cpp/controllers/mainwindow.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/gw-dss-cpp/controllers/verticaltextdelegate.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/gw-dss-cpp/controllers/chartwindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/gw-dss-cpp/controllers/errorwindow.h
 )
 
 set(PROJECT_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/controllers/mainwindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/controllers/verticaltextdelegate.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/controllers/chartwindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/analysis/dbapi.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/analysis/dataprocessing.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/analysis/predict.cpp 
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/controllers/mainwindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/controllers/verticaltextdelegate.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/controllers/chartwindow.cpp    
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/controllers/errorwindow.cpp    
 )
 
 set(TS_FILES

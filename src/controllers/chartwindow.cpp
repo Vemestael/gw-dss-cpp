@@ -19,7 +19,7 @@ ChartWindow::ChartWindow(ChartType type, QVector<QVector<double>> data, QString 
     QTranslator translator;
     if(translator.load(lang, "./translations/")){
         if(!qApp->installTranslator(&translator)){
-            QErrorMessage().showMessage(QErrorMessage::tr("Unable to install language"));
+            ErrorWindow(ErrorWindow::tr("Unable to install language"));
         }
     }
     this->setBaseSize(800, 600);

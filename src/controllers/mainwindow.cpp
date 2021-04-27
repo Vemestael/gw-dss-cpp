@@ -144,7 +144,7 @@ void MainWindow::setButtonsHandling(void)
 void MainWindow::allTimePressed(void)
 {
     if (this->db.isEmptyTable()) {
-        QErrorMessage().showMessage(QErrorMessage::tr("Empty dataset"));
+        ErrorWindow(ErrorWindow::tr("Empty dataset"));
         return;
     }
     this->ui->dateStart->setDate(this->db.getFirstDate());
@@ -173,7 +173,7 @@ void MainWindow::lastMonthPressed(void)
 void MainWindow::analyzePressed(void)
 {
     if (this->db.isEmptyTable()) {
-        QErrorMessage().showMessage(QErrorMessage::tr("Empty dataset"));
+        ErrorWindow(ErrorWindow::tr("Empty dataset"));
         return;
     }
     double cost = this->settings.value("channelCost", 0.0).toDouble();
@@ -309,7 +309,7 @@ void MainWindow::switchLangTriggered(QString const &lang)
             this->settings.setValue("lang", lang);
             this->settings.sync();
         } else {
-            QErrorMessage().showMessage(QErrorMessage::tr("Unable to install language"));
+            ErrorWindow(ErrorWindow::tr("Unable to install language"));
         }
     };
 };
