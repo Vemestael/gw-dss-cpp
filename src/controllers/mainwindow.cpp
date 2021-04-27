@@ -31,11 +31,16 @@ void MainWindow::loadWindow(void)
 void MainWindow::loadSettings(void)
 {
     QString path = this->settings.value("dbPath", "").toString();
-    while (path == "") {
-        this->setDbPathTriggered();
-        path = this->settings.value("dbPath", "").toString();
+    if(path != "")
+    {
+        this->db.connectToDataBase(path);
+    }else
+    {
+        while (path == "") {
+                this->setDbPathTriggered();
+                path = this->settings.value("dbPath", "").toString();
+            }
     }
-    this->db.connectToDataBase(path);
 
     QString lang = this->settings.value("lang", "en").toString();
     this->switchLangTriggered(lang);
@@ -244,6 +249,8 @@ void MainWindow::setDbPathTriggered(void)
     if (fileName != "") {
         this->settings.setValue("dbPath", fileName);
         this->settings.sync();
+        this->db.disconnectFromDataBase();
+        this->db.connectToDataBase(fileName);
     }
 };
 
