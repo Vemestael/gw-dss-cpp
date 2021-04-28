@@ -75,3 +75,5 @@ build/
 CMakeLists.txt.user
 .vscode/
 .cache/
+
+!app.rc
