@@ -212,6 +212,11 @@ void MainWindow::analyzePressed(void)
     QVector<QVector<double>> lambdaByShift = DataProcessing::getCountOfCallsByShift(
             this->db.getCallsCountsByDate(this->ui->dateStart->date(), this->ui->dateEnd->date()));
 
+    if(lambdaByShift.isEmpty()) {
+        ErrorWindow(ErrorWindow::tr("Empty dataset for the selected date range"));
+        return;
+    }
+
     for (size_t i = 0; i < lambdaByShift.length(); ++i) {
         auto predictTable = predictTables[i];
         auto costTable = costTables[i];

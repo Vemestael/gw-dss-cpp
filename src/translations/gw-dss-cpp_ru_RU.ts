@@ -68,7 +68,7 @@
     </message>
     <message>
         <location filename="../controllers/chartwindow.cpp" line="22"/>
-        <location filename="../controllers/mainwindow.cpp" line="312"/>
+        <location filename="../controllers/mainwindow.cpp" line="317"/>
         <source>Unable to install language</source>
         <translation>Невозможно установить язык</translation>
     </message>
@@ -82,6 +82,11 @@
         <location filename="../controllers/mainwindow.cpp" line="176"/>
         <source>Empty dataset</source>
         <translation>Пустой набор данных</translation>
+    </message>
+    <message>
+        <location filename="../controllers/mainwindow.cpp" line="216"/>
+        <source>Empty dataset for the selected date range</source>
+        <translation type="unfinished">Пустой набор данных по выбранному диапазону дат</translation>
     </message>
 </context>
 <context>
@@ -341,12 +346,12 @@
         <translation>Мин. очередь</translation>
     </message>
     <message>
-        <location filename="../controllers/mainwindow.cpp" line="248"/>
+        <location filename="../controllers/mainwindow.cpp" line="253"/>
         <source>Open File</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../controllers/mainwindow.cpp" line="248"/>
+        <location filename="../controllers/mainwindow.cpp" line="253"/>
         <source>DB file (*.db *.sqlite)</source>
         <translation>Файл БД (*.db *.sqlite)</translation>
     </message>

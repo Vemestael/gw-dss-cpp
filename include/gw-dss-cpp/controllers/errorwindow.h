@@ -7,6 +7,8 @@
 
 class ErrorWindow : public QWidget
 {
+    Q_OBJECT
+    
 public:
     explicit ErrorWindow(QString const &msg);
     ~ErrorWindow(void) = default;
