@@ -1,5 +1,9 @@
-<!DOCTYPE RCC><RCC version="1.0">
+<!DOCTYPE RCC>
+<RCC version="1.0">
 <qresource prefix="/styles">
     <file alias="nord.qss">styles/nord.qss</file>
+</qresource>
+<qresource prefix="/icons">
+    <file alias="icon-64.png">icons/icon-64.ico</file>
 </qresource>
 </RCC>

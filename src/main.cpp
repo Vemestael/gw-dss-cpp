@@ -11,6 +11,8 @@ int main(int argc, char *argv[])
     QString style = QLatin1String(file.readAll());
     qApp->setStyleSheet(style);
 
+    a.setWindowIcon(QIcon(":/icons/icon-64.png"));
+
     MainWindow w;
     w.show();
     return a.exec();

@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 project(gw-dss-cpp LANGUAGES CXX)
 
+set(CMAKE_PREFIX_PATH C:\\Programs\\Qt\\6.0.3\\mingw81_64\\)
+
 # ====================================================================================================
 #                                            DEPENDENCIES
 # ====================================================================================================
@@ -66,6 +68,9 @@ set(TS_FILES
 set(PROJECT_RESOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/resources.qrc
 )
+if(WIN32)
+    list(APPEND PROJECT_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/app.rc)
+endif()
 
 set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION ${CMAKE_BINARY_DIR}/translations)
 qt_add_translation(QM_FILES ${TS_FILES})
