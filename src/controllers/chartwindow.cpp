@@ -73,7 +73,7 @@ void ChartWindow::plot(ChartType type, QVector<QVector<double>> data)
         QVector<QString> labels;
         for (auto &&weekDay : weekDays) {
             for (size_t i = 0; i < 3; ++i) {
-                labels.append(weekDay + QString(" %1").arg(i + 1));
+                labels.append(weekDay + QString(" " + tr("Shift")) + QString(" %1").arg(i + 1));
             }
         }
 
@@ -92,7 +92,7 @@ void ChartWindow::plot(ChartType type, QVector<QVector<double>> data)
         QVector<QString> labels;
         for (auto &&weekDay : weekDays) {
             for (size_t i = 0; i < 24; ++i) {
-                labels.append(weekDay + QString(" %1").arg(i + 1));
+                labels.append(weekDay + QString(" %1-00").arg(i + 1));
             }
         }
 

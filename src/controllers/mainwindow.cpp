@@ -340,6 +340,11 @@ void MainWindow::showChartTriggered(ChartType type)
         break;
     }
     
+    if(data.isEmpty() || data[0].isEmpty()) {
+        ErrorWindow(ErrorWindow::tr("Empty dataset for the selected date range"));
+        return;
+    }
+
     QString lang = this->settings.value("lang", "en").toString();
     this->cw = new ChartWindow(type, data, QString(__APPLICATION_NAME__) + "_" + lang);
     this->cw->show();

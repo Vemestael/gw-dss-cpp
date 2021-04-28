@@ -54,6 +54,11 @@
         <translation>Нагрузка по сменам</translation>
     </message>
     <message>
+        <location filename="../controllers/chartwindow.cpp" line="76"/>
+        <source>Shift</source>
+        <translation>Смена</translation>
+    </message>
+    <message>
         <location filename="../controllers/chartwindow.cpp" line="88"/>
         <source>Load by hours</source>
         <translation>Нагрузка по часам</translation>
@@ -86,7 +91,7 @@
     <message>
         <location filename="../controllers/mainwindow.cpp" line="216"/>
         <source>Empty dataset for the selected date range</source>
-        <translation type="unfinished">Пустой набор данных по выбранному диапазону дат</translation>
+        <translation>Пустой набор данных по выбранному диапазону дат</translation>
     </message>
 </context>
 <context>

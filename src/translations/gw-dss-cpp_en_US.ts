@@ -54,6 +54,11 @@
         <translation>Load by work shifts</translation>
     </message>
     <message>
+        <location filename="../controllers/chartwindow.cpp" line="76"/>
+        <source>Shift</source>
+        <translation>Shift</translation>
+    </message>
+    <message>
         <location filename="../controllers/chartwindow.cpp" line="88"/>
         <source>Load by hours</source>
         <translation>Load by hours</translation>
@@ -86,7 +91,7 @@
     <message>
         <location filename="../controllers/mainwindow.cpp" line="216"/>
         <source>Empty dataset for the selected date range</source>
-        <translation type="unfinished">Empty dataset for the selected date range</translation>
+        <translation>Empty dataset for the selected date range</translation>
     </message>
 </context>
 <context>
