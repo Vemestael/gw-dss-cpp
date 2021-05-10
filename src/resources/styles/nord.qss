@@ -74,3 +74,39 @@ QTabWidget QWidget {
     background-color: #4C566A;
     color: #E5E9F0;
 }
+
+/* Set color for combo box and combo box text */
+
+QComboBox {
+    background-color: #3B4252;
+    color: #E5E9F0;
+    border-radius: 3px;
+    border: 1px solid #E5E9F0;
+    padding: 5px 10px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #3B4252;
+    color: #E5E9F0;
+    border-radius: 3px;
+    border: 1px solid #E5E9F0;
+    padding: 5px 10px;
+}
+
+/* Set color for spin box and spin box text */
+
+QDoubleSpinBox {
+    background-color: #3B4252;
+    color: #E5E9F0;
+    border-radius: 3px;
+    border: 1px solid #E5E9F0;
+    padding: 5px 10px;
+}
+
+QSpinBox {
+    background-color: #3B4252;
+    color: #E5E9F0;
+    border-radius: 3px;
+    border: 1px solid #E5E9F0;
+    padding: 5px 10px;
+}
