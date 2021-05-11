@@ -10,15 +10,10 @@
 
 class Predict
 {
-private:
+public:
     static QVector<QVector<double>> getCharacteristics(QVector<unsigned> channelCountArr,
                                                        unsigned queueCount, double la, double mu,
                                                        double nu = 0, double n = -1);
-
-public:
-    static QVector<QVector<double>> getPredict(QVector<unsigned> channelCountArr,
-                                               unsigned queueCount, double la, double mu,
-                                               double nu = 0, double n = -1);
 };
 
 #endif // PREDICT_H

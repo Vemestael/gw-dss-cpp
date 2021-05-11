@@ -18,7 +18,7 @@
 
 enum class ChartType { Timescale, WeekDays, ByShifts, ByHours };
 
-static QVector<double> genRange(int lower, int upper);
+QVector<double> genRange(int lower, int upper);
 
 class ChartWindow : public QWidget
 {

@@ -24,7 +24,6 @@ MainWindow::~MainWindow()
 void MainWindow::loadWindow(void)
 {
     this->setDate();
-    this->setTablesHeaders();
     this->setButtonsHandling();
 };
 
@@ -52,55 +51,6 @@ void MainWindow::setDate(void)
     this->ui->dateEnd->setDate(QDate::currentDate());
 };
 
-void MainWindow::setTablesHeaders(void)
-{
-    auto tables = {
-        this->ui->predictTable1, this->ui->predictTable2, this->ui->predictTable3,
-        this->ui->predictTable4, this->ui->predictTable5, this->ui->predictTable6,
-        this->ui->predictTable7, this->ui->costTable1,    this->ui->costTable2,
-        this->ui->costTable3,    this->ui->costTable4,    this->ui->costTable5,
-        this->ui->costTable6,    this->ui->costTable7,
-    };
-    for (auto &&table : tables) {
-        table->setSpan(0, 0, 1, 2);
-        table->setSpan(1, 0, 3, 1);
-        table->setSpan(4, 0, 3, 1);
-        table->setSpan(7, 0, 3, 1);
-
-        // horizontal headers
-        table->setItem(0, 2, new QTableWidgetItem(tr("Shift 1")));
-        table->setItem(0, 3, new QTableWidgetItem(tr("Shift 2")));
-        table->setItem(0, 4, new QTableWidgetItem(tr("Shift 3")));
-
-        if (table->objectName().contains("predictTable")) {
-            for (size_t i = 0; i < 10; i += 3) {
-                table->setItem(i + 1, 1, new QTableWidgetItem(tr("Number of staff")));
-                table->setItem(i + 2, 1, new QTableWidgetItem(tr("Requests processed")));
-                table->setItem(i + 3, 1, new QTableWidgetItem(tr("Queue length")));
-            }
-        } else {
-            for (size_t i = 0; i < 10; i += 3) {
-                table->setItem(i + 1, 1, new QTableWidgetItem(tr("Personnel costs")));
-                table->setItem(i + 2, 1, new QTableWidgetItem(tr("Requests cost")));
-            }
-        }
-
-        auto item = [](QString const &text) {
-            QTableWidgetItem *item = new QTableWidgetItem();
-            item->setTextAlignment(Qt::AlignCenter);
-            item->setText(text);
-            return item;
-        };
-        table->setItem(1, 0, item(tr("Maximum requests")));
-        table->setItem(4, 0, item(tr("Optimally")));
-        table->setItem(7, 0, item(tr("Min. queue")));
-
-        table->setItemDelegateForColumn(0, new VerticalTextDelegate(this));
-        table->setColumnWidth(0, 10);
-        table->setColumnWidth(1, 160);
-    }
-};
-
 void MainWindow::setButtonsHandling(void)
 {
     connect(this->ui->allTime, &QPushButton::clicked, this, &MainWindow::allTimePressed);
@@ -110,6 +60,10 @@ void MainWindow::setButtonsHandling(void)
             &MainWindow::lastQuartYearPressed);
     connect(this->ui->lastMonth, &QPushButton::clicked, this, &MainWindow::lastMonthPressed);
     connect(this->ui->analyze, &QPushButton::clicked, this, &MainWindow::analyzePressed);
+
+    connect(this->ui->graphBox, &QComboBox::currentIndexChanged, this, &MainWindow::graphTypeChanged);
+    connect(this->ui->dayBox, &QComboBox::currentIndexChanged, this, &MainWindow::graphTypeChanged);
+    connect(this->ui->shiftBox, &QComboBox::currentIndexChanged, this, &MainWindow::graphTypeChanged);
 
     connect(this->ui->actionDbPath, &QAction::triggered, this, &MainWindow::setDbPathTriggered);
     connect(this->ui->actionHourlyPayment, &QAction::triggered, this,
@@ -196,15 +150,6 @@ void MainWindow::analyzePressed(void)
         this->setMaxQueueLengthTriggered();
         queueLength = this->settings.value("queueLength", 0).toInt();
     }
-    QVector<QTableWidget *> predictTables = {
-        this->ui->predictTable1, this->ui->predictTable2, this->ui->predictTable3,
-        this->ui->predictTable4, this->ui->predictTable5, this->ui->predictTable6,
-        this->ui->predictTable7,
-    };
-    QVector<QTableWidget *> costTables = {
-        this->ui->costTable1, this->ui->costTable2, this->ui->costTable3, this->ui->costTable4,
-        this->ui->costTable5, this->ui->costTable6, this->ui->costTable7,
-    };
 
     QVector<unsigned> personalCount(staffNumber);
     std::iota(personalCount.begin(), personalCount.end(), 1);
@@ -218,31 +163,52 @@ void MainWindow::analyzePressed(void)
     }
 
     for (size_t i = 0; i < lambdaByShift.length(); ++i) {
-        auto predictTable = predictTables[i];
-        auto costTable = costTables[i];
-
         for (size_t j = 0; j < lambdaByShift[i].length(); ++j) {
-            size_t index = 1;
-            QVector<QVector<double>> predicts = Predict::getPredict(
+            QVector<QVector<double>> predicts = Predict::getCharacteristics(
                     personalCount, queueLength, lambdaByShift[i][j], servedRequirements);
-
-            for (auto &&predict : predicts) {
-                for (auto &&characteristic : predict) {
-                    predictTable->setItem(
-                            index, j + 2,
-                            new QTableWidgetItem(QString::number(characteristic, 'f', 2)));
-                    index += 1;
-                }
-
-                double channelCost = predict[0] * cost;
-                double requestCost = predict[0] * cost / predict[1];
-                costTable->setItem(index - 3, j + 2,
-                                   new QTableWidgetItem(QString::number(channelCost, 'f', 2)));
-                costTable->setItem(index - 2, j + 2,
-                                   new QTableWidgetItem(QString::number(requestCost, 'f', 2)));
-            }
+            servedReqArr.append(predicts[0]);
+            unservedReqArr.append(predicts[1]);
+            queueLenArr.append(predicts[2]);
         }
     }
+
+    this->ui->graphBox->setEnabled(true);
+    this->ui->dayBox->setEnabled(true);
+    this->ui->shiftBox->setEnabled(true);
+    this->graphTypeChanged();
+};
+
+// combo box handlers
+
+void MainWindow::graphTypeChanged(void)
+{
+    size_t graphBoxIndex = this->ui->graphBox->currentIndex();
+    size_t dayBoxIndex = this->ui->dayBox->currentIndex();
+    size_t shiftBoxIndex = this->ui->shiftBox->currentIndex();
+    size_t index = (dayBoxIndex + 1) * (shiftBoxIndex + 1)  - 1;
+
+    QVector<double> data;
+    QString title = this->ui->graphBox->currentText();
+    switch (graphBoxIndex)
+    {
+    case 0:
+        data = this->servedReqArr[index];
+        break;
+    
+    case 1:
+        data = this->unservedReqArr[index];
+        break;
+    
+    case 2:
+        data = this->queueLenArr[index];
+        break;
+    }
+    QCustomPlot *customPlot = new QCustomPlot();
+    this->setPlotSettings(customPlot);
+    this->plotGraph(customPlot, "some title", data);
+    QGraphicsScene *scene = new QGraphicsScene();
+    scene->addWidget(customPlot);
+    this->ui->graphicsView->setScene(scene);
 };
 
 // triggered menu handlers
@@ -310,7 +276,6 @@ void MainWindow::switchLangTriggered(QString const &lang)
     if (translator.load(QString(__APPLICATION_NAME__) + "_" + lang, "./translations/")) {
         if (qApp->installTranslator(&translator)) {
             this->ui->retranslateUi(this);
-            this->setTablesHeaders();
             this->settings.setValue("lang", lang);
             this->settings.sync();
         } else {
@@ -348,4 +313,54 @@ void MainWindow::showChartTriggered(ChartType type)
     QString lang = this->settings.value("lang", "en").toString();
     this->cw = new ChartWindow(type, data, QString(__APPLICATION_NAME__) + "_" + lang);
     this->cw->show();
+};
+
+void MainWindow::setPlotSettings(QCustomPlot *customPlot)
+{
+    // Fixed size to fill graphicsView
+    customPlot->setFixedHeight(385);
+    customPlot->setFixedWidth(1265);
+
+    customPlot->setInteraction(QCP::iRangeZoom, true);
+    customPlot->setInteraction(QCP::iRangeDrag, true);
+
+    customPlot->axisRect()->setRangeZoom(Qt::Horizontal);
+    customPlot->axisRect()->setRangeDrag(Qt::Horizontal);
+    
+    customPlot->xAxis->grid()->setVisible(true);
+    customPlot->yAxis->grid()->setSubGridVisible(true);
+};
+
+void MainWindow::plotGraph(QCustomPlot *customPlot, QString title, QVector<double> data)
+{
+    QVector<QString> labels;
+    QSharedPointer<QCPAxisTickerText> xTicker(new QCPAxisTickerText());
+
+    QVector<double> range = genRange(1, data.length() + 1);
+
+    for(auto&& rangeElement : range)
+    {
+        labels.append(QString::number(rangeElement));
+    }
+
+    xTicker->addTicks(range, labels);
+
+    customPlot->xAxis->setTicker(xTicker);
+
+    customPlot->xAxis->setRange(0, data.length() + 1);
+    customPlot->yAxis->setRange(
+            *std::min_element(data.begin(), data.end()) * 0.9,
+            *std::max_element(data.begin(), data.end()) * 1.05);
+
+    customPlot->yAxis->setLabel(title);
+    customPlot->addGraph();
+
+    customPlot->graph()->setLineStyle(QCPGraph::lsLine);
+
+    QVector<QCPGraphData> graphData;
+    for (size_t i = 0; i < data.length(); ++i) {
+        graphData.append({double(i + 1), data[i]});
+    }
+
+    customPlot->graph()->data()->set(graphData);
 };

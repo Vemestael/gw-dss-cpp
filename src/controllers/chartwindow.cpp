@@ -4,7 +4,7 @@
 // TODO: fix it
 [[maybe_unused]] static auto __unused = QPrinterInfo::defaultPrinter();
 
-static QVector<double> genRange(int lower, int upper)
+QVector<double> genRange(int lower, int upper)
 {
     QVector<double> vec;
     vec.resize(upper - 1);

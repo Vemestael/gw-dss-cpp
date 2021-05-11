@@ -15,6 +15,10 @@
 #include <QList>
 #include <QVector>
 #include <QLocale>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+
+#include <qcustomplot/qcustomplot.h>
 
 #include <gw-dss-cpp/analysis/dbapi.h>
 #include <gw-dss-cpp/analysis/dataprocessing.h>
@@ -45,12 +49,14 @@ private:
     DbApi db;
     QSettings settings;
     ChartWindow *cw;
+    QVector<QVector<double>> servedReqArr;
+    QVector<QVector<double>> unservedReqArr;
+    QVector<QVector<double>> queueLenArr;
 
     // window preparing
     void loadWindow(void);
     void loadSettings(void);
     void setDate(void);
-    void setTablesHeaders(void);
     void setButtonsHandling(void);
 
     // pressed event handlers
@@ -61,6 +67,9 @@ private:
     void lastMonthPressed(void);
     void analyzePressed(void);
 
+    // combo box handlers
+    void graphTypeChanged(void);
+
     // triggered menu handlers
     void setDbPathTriggered(void);
     void setHourlyPaymentTriggered(void);
@@ -69,5 +78,9 @@ private:
     void setMaxQueueLengthTriggered(void);
     void switchLangTriggered(QString const &lang);
     void showChartTriggered(ChartType type);
+
+    // plot handlers
+    void setPlotSettings(QCustomPlot *customPlot);
+    void plotGraph(QCustomPlot *customPlot, QString title, QVector<double> data);
 };
 #endif // MAINWINDOW_H
