@@ -25,6 +25,7 @@ void MainWindow::loadWindow(void)
 {
     this->setDate();
     this->setButtonsHandling();
+    this->setSpinBoxValue();
 };
 
 void MainWindow::loadSettings(void)
@@ -51,6 +52,14 @@ void MainWindow::setDate(void)
     this->ui->dateEnd->setDate(QDate::currentDate());
 };
 
+void MainWindow::setSpinBoxValue(void)
+{
+    this->ui->channelCost->setValue(this->settings.value("channelCost", 0.0).toDouble());
+    this->ui->servedRequirements->setValue(this->settings.value("servedRequirements", 0.0).toDouble());
+    this->ui->staffNumber->setValue(this->settings.value("staffNumber", 1).toInt());
+    this->ui->queueLength->setValue(this->settings.value("queueLength", 0).toInt());
+};
+
 void MainWindow::setButtonsHandling(void)
 {
     connect(this->ui->allTime, &QPushButton::clicked, this, &MainWindow::allTimePressed);
@@ -64,6 +73,15 @@ void MainWindow::setButtonsHandling(void)
     connect(this->ui->graphBox, &QComboBox::currentIndexChanged, this, &MainWindow::graphTypeChanged);
     connect(this->ui->dayBox, &QComboBox::currentIndexChanged, this, &MainWindow::graphTypeChanged);
     connect(this->ui->shiftBox, &QComboBox::currentIndexChanged, this, &MainWindow::graphTypeChanged);
+
+    connect(this->ui->channelCost, &QDoubleSpinBox::valueChanged, this,
+            [this]() { this->spinBoxChanged(this->ui->channelCost); });
+    connect(this->ui->servedRequirements, &QDoubleSpinBox::valueChanged, this,
+            [this]() { this->spinBoxChanged(this->ui->servedRequirements); });
+    connect(this->ui->staffNumber, &QSpinBox::valueChanged, this,
+            [this]() { this->spinBoxChanged(this->ui->staffNumber); });
+    connect(this->ui->queueLength, &QSpinBox::valueChanged, this,
+            [this]() { this->spinBoxChanged(this->ui->queueLength); });
 
     connect(this->ui->actionDbPath, &QAction::triggered, this, &MainWindow::setDbPathTriggered);
     connect(this->ui->actionHourlyPayment, &QAction::triggered, this,
@@ -209,6 +227,15 @@ void MainWindow::graphTypeChanged(void)
     QGraphicsScene *scene = new QGraphicsScene();
     scene->addWidget(customPlot);
     this->ui->graphicsView->setScene(scene);
+};
+
+// spin box handlers
+
+template<typename spinBox>
+void MainWindow::spinBoxChanged(spinBox obj)
+{
+    this->settings.setValue(obj->objectName(), obj->value());
+    this->settings.sync();
 };
 
 // triggered menu handlers

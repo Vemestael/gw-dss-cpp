@@ -57,6 +57,7 @@ private:
     void loadWindow(void);
     void loadSettings(void);
     void setDate(void);
+    void setSpinBoxValue(void);
     void setButtonsHandling(void);
 
     // pressed event handlers
@@ -69,6 +70,10 @@ private:
 
     // combo box handlers
     void graphTypeChanged(void);
+
+    // spin box handlers
+    template<typename spinBox>
+    void spinBoxChanged(spinBox obj);
 
     // triggered menu handlers
     void setDbPathTriggered(void);
