@@ -223,19 +223,10 @@ void MainWindow::graphTypeChanged(void)
     }
     QCustomPlot *customPlot = new QCustomPlot();
     this->setPlotSettings(customPlot);
-    this->plotGraph(customPlot, "some title", data);
+    this->plotGraph(customPlot, title, data);
     QGraphicsScene *scene = new QGraphicsScene();
     scene->addWidget(customPlot);
     this->ui->graphicsView->setScene(scene);
-};
-
-// spin box handlers
-
-template<typename spinBox>
-void MainWindow::spinBoxChanged(spinBox obj)
-{
-    this->settings.setValue(obj->objectName(), obj->value());
-    this->settings.sync();
 };
 
 // triggered menu handlers
@@ -345,8 +336,8 @@ void MainWindow::showChartTriggered(ChartType type)
 void MainWindow::setPlotSettings(QCustomPlot *customPlot)
 {
     // Fixed size to fill graphicsView
-    customPlot->setFixedHeight(385);
-    customPlot->setFixedWidth(1265);
+    customPlot->setFixedHeight(375);
+    customPlot->setFixedWidth(1250);
 
     customPlot->setInteraction(QCP::iRangeZoom, true);
     customPlot->setInteraction(QCP::iRangeDrag, true);

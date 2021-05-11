@@ -73,7 +73,11 @@ private:
 
     // spin box handlers
     template<typename spinBox>
-    void spinBoxChanged(spinBox obj);
+    void spinBoxChanged(spinBox obj)
+    {
+        this->settings.setValue(obj->objectName(), obj->value());
+        this->settings.sync();
+    };
 
     // triggered menu handlers
     void setDbPathTriggered(void);
