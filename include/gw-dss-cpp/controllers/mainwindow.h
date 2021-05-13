@@ -52,6 +52,7 @@ private:
     QVector<QVector<double>> servedReqArr;
     QVector<QVector<double>> unservedReqArr;
     QVector<QVector<double>> queueLenArr;
+    QCustomPlot *customPlot;
 
     // window preparing
     void loadWindow(void);
@@ -70,14 +71,14 @@ private:
 
     // combo box handlers
     void graphTypeChanged(void);
+    void additionalGraphChanged(QComboBox *obj);
+
+    // check box handlers
+    void addGraphChecked(int state);
 
     // spin box handlers
     template<typename spinBox>
-    void spinBoxChanged(spinBox obj)
-    {
-        this->settings.setValue(obj->objectName(), obj->value());
-        this->settings.sync();
-    };
+    void spinBoxChanged(spinBox obj);
 
     // triggered menu handlers
     void setDbPathTriggered(void);
@@ -90,6 +91,14 @@ private:
 
     // plot handlers
     void setPlotSettings(QCustomPlot *customPlot);
-    void plotGraph(QCustomPlot *customPlot, QString title, QVector<double> data);
+    void plotGraph(QCustomPlot *customPlot, QString const &name, QVector<double> data);
 };
+
+template<typename spinBox>
+void MainWindow::spinBoxChanged(spinBox obj)
+{
+    this->settings.setValue(obj->objectName(), obj->value());
+    this->settings.sync();
+};
+
 #endif // MAINWINDOW_H

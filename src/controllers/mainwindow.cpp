@@ -6,7 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
       settings(QSettings::IniFormat, QSettings::UserScope, __APPLICATION_NAME__),
-      cw(nullptr)
+      cw(nullptr),
+      customPlot(nullptr)
 {
     ui->setupUi(this);
     this->loadWindow();
@@ -26,6 +27,8 @@ void MainWindow::loadWindow(void)
     this->setDate();
     this->setButtonsHandling();
     this->setSpinBoxValue();
+    this->addGraphChecked(Qt::Unchecked);
+    this->ui->addGraphBox->setVisible(false);
 };
 
 void MainWindow::loadSettings(void)
@@ -73,6 +76,13 @@ void MainWindow::setButtonsHandling(void)
     connect(this->ui->graphBox, &QComboBox::currentIndexChanged, this, &MainWindow::graphTypeChanged);
     connect(this->ui->dayBox, &QComboBox::currentIndexChanged, this, &MainWindow::graphTypeChanged);
     connect(this->ui->shiftBox, &QComboBox::currentIndexChanged, this, &MainWindow::graphTypeChanged);
+
+    connect(this->ui->graphBox_1, &QComboBox::currentIndexChanged, this,
+            [this]() { this->additionalGraphChanged(this->ui->graphBox_1);});
+    connect(this->ui->graphBox_2, &QComboBox::currentIndexChanged, this,
+            [this]() { this->additionalGraphChanged(this->ui->graphBox_2);});
+
+    connect(this->ui->addGraphBox, &QCheckBox::stateChanged, this, &MainWindow::addGraphChecked);
 
     connect(this->ui->channelCost, &QDoubleSpinBox::valueChanged, this,
             [this]() { this->spinBoxChanged(this->ui->channelCost); });
@@ -193,6 +203,7 @@ void MainWindow::analyzePressed(void)
     this->ui->graphBox->setEnabled(true);
     this->ui->dayBox->setEnabled(true);
     this->ui->shiftBox->setEnabled(true);
+    this->ui->addGraphBox->setVisible(true);
     this->graphTypeChanged();
 };
 
@@ -206,7 +217,7 @@ void MainWindow::graphTypeChanged(void)
     size_t index = (dayBoxIndex + 1) * (shiftBoxIndex + 1)  - 1;
 
     QVector<double> data;
-    QString title = this->ui->graphBox->currentText();
+    QString name = this->ui->graphBox->currentText();
     switch (graphBoxIndex)
     {
     case 0:
@@ -221,12 +232,63 @@ void MainWindow::graphTypeChanged(void)
         data = this->queueLenArr[index];
         break;
     }
-    QCustomPlot *customPlot = new QCustomPlot();
-    this->setPlotSettings(customPlot);
-    this->plotGraph(customPlot, title, data);
+    delete this->customPlot;
+    this->customPlot = new QCustomPlot();
+    this->setPlotSettings(this->customPlot);
+    this->plotGraph(this->customPlot, name, data);
     QGraphicsScene *scene = new QGraphicsScene();
-    scene->addWidget(customPlot);
+    scene->addWidget(this->customPlot);
     this->ui->graphicsView->setScene(scene);
+};
+
+void MainWindow::additionalGraphChanged(QComboBox *obj)
+{
+    int index = obj->currentIndex();
+    if(index != 0){
+        QVector<double> data;
+        switch (index)
+        {
+        case 1:
+            data = this->servedReqArr[index];
+            break;
+        
+        case 2:
+            data = this->unservedReqArr[index];
+            break;
+        
+        case 3:
+            data = this->queueLenArr[index];
+            break;
+        }
+        this->plotGraph(this->customPlot, obj->currentText(), data);
+        this->customPlot->replot(QCustomPlot::rpQueuedRefresh);
+    }
+};
+
+// check box handlers
+
+void MainWindow::addGraphChecked(int state)
+{
+    switch (state)
+    {
+    case Qt::Unchecked:
+        this->ui->graphBox_1->setVisible(false);
+        this->ui->graphBox_2->setVisible(false);
+        this->ui->labelGraphBox_1->setVisible(false);
+        this->ui->labelGraphBox_2->setVisible(false);
+        this->ui->graphBox_1->setCurrentIndex(0);
+        this->ui->graphBox_2->setCurrentIndex(0);
+        if(this->customPlot != nullptr)
+            this->graphTypeChanged();
+        break;
+    
+    case Qt::Checked:
+        this->ui->graphBox_1->setVisible(true);
+        this->ui->graphBox_2->setVisible(true);
+        this->ui->labelGraphBox_1->setVisible(true);
+        this->ui->labelGraphBox_2->setVisible(true);
+        break;
+    }
 };
 
 // triggered menu handlers
@@ -335,50 +397,45 @@ void MainWindow::showChartTriggered(ChartType type)
 
 void MainWindow::setPlotSettings(QCustomPlot *customPlot)
 {
-    // Fixed size to fill graphicsView
-    customPlot->setFixedHeight(375);
-    customPlot->setFixedWidth(1250);
+    customPlot->setMinimumHeight(340);
+    customPlot->setMaximumHeight(360);
+    customPlot->setMinimumWidth(1240);
 
     customPlot->setInteraction(QCP::iRangeZoom, true);
     customPlot->setInteraction(QCP::iRangeDrag, true);
 
-    customPlot->axisRect()->setRangeZoom(Qt::Horizontal);
-    customPlot->axisRect()->setRangeDrag(Qt::Horizontal);
-    
     customPlot->xAxis->grid()->setVisible(true);
     customPlot->yAxis->grid()->setSubGridVisible(true);
+
+    customPlot->legend->setVisible(true);
 };
 
-void MainWindow::plotGraph(QCustomPlot *customPlot, QString title, QVector<double> data)
+void MainWindow::plotGraph(QCustomPlot *customPlot, QString const &name, QVector<double> data)
 {
-    QVector<QString> labels;
-    QSharedPointer<QCPAxisTickerText> xTicker(new QCPAxisTickerText());
-
-    QVector<double> range = genRange(1, data.length() + 1);
-
-    for(auto&& rangeElement : range)
-    {
-        labels.append(QString::number(rangeElement));
-    }
-
-    xTicker->addTicks(range, labels);
-
-    customPlot->xAxis->setTicker(xTicker);
-
-    customPlot->xAxis->setRange(0, data.length() + 1);
-    customPlot->yAxis->setRange(
-            *std::min_element(data.begin(), data.end()) * 0.9,
-            *std::max_element(data.begin(), data.end()) * 1.05);
-
-    customPlot->yAxis->setLabel(title);
-    customPlot->addGraph();
-
-    customPlot->graph()->setLineStyle(QCPGraph::lsLine);
-
     QVector<QCPGraphData> graphData;
     for (size_t i = 0; i < data.length(); ++i) {
         graphData.append({double(i + 1), data[i]});
     }
 
-    customPlot->graph()->data()->set(graphData);
+    QCPGraph *graph = customPlot->addGraph();
+    graph->data()->set(graphData);
+    graph->keyAxis()->setRange(-1, data.length() + 1);
+    graph->valueAxis()->setRange(-0.25, *std::max_element(data.begin(), data.end()) * 1.05);
+    graph->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black), QBrush(Qt::white), 6));
+    switch (customPlot->graphCount())
+    {
+        case 1:
+            graph->setPen(QPen(Qt::black));
+            break;
+        case 2:
+            graph->setPen(QPen(Qt::red));
+            break;
+        case 3:
+            graph->setPen(QPen(Qt::blue));
+            break;
+        default:
+            graph->setPen(QPen(Qt::black));
+            break;
+    }
+    graph->setName(name);
 };

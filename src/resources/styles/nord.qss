@@ -89,6 +89,7 @@ QComboBox:enabled {
 }
 
 QComboBox:disabled {
+    color: #4C566A;
     background-color: #2E3440;
 }
 
@@ -116,4 +117,24 @@ QSpinBox {
     border-radius: 3px;
     border: 1px solid #E5E9F0;
     padding: 5px 10px;
+}
+
+QCheckBox {
+    color: #E5E9F0;
+}
+
+QCheckBox::indicator {
+    width: 30px;
+    height: 30px;
+}
+
+QCheckBox::indicator:unchecked {
+    border-radius: 3px;
+    border: 1px solid #E5E9F0;
+}
+
+QCheckBox::indicator:checked {
+    background: #E5E9F0;
+    border-radius: 3px;
+    border: 1px solid #3B4252;
 }
