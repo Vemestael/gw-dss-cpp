@@ -58,6 +58,7 @@ void MainWindow::setDate(void)
 void MainWindow::setSpinBoxValue(void)
 {
     this->ui->channelCost->setValue(this->settings.value("channelCost", 0.0).toDouble());
+    this->ui->requestCost->setValue(this->settings.value("requestCost", 0.0).toDouble());
     this->ui->servedRequirements->setValue(this->settings.value("servedRequirements", 0.0).toDouble());
     this->ui->staffNumber->setValue(this->settings.value("staffNumber", 1).toInt());
     this->ui->queueLength->setValue(this->settings.value("queueLength", 0).toInt());
@@ -158,13 +159,18 @@ void MainWindow::analyzePressed(void)
         ErrorWindow(ErrorWindow::tr("Empty dataset"));
         return;
     }
-    double cost = this->settings.value("channelCost", 0.0).toDouble();
+    double channelCost = this->settings.value("channelCost", 0.0).toDouble();
+    double requestCost = this->settings.value("requestCost", 0.0).toDouble();
     double servedRequirements = this->settings.value("servedRequirements", 0.0).toDouble();
     unsigned staffNumber = this->settings.value("staffNumber", 0).toInt();
     unsigned queueLength = this->settings.value("queueLength", 0).toInt();
-    while (cost == 0.0) {
+    while (channelCost == 0.0) {
         this->setHourlyPaymentTriggered();
-        cost = this->settings.value("channelCost", 0.0).toDouble();
+        channelCost = this->settings.value("channelCost", 0.0).toDouble();
+    }
+    while (requestCost == 0.0) {
+        this->setRequestCostTriggered();
+        requestCost = this->settings.value("requestCost", 0.0).toDouble();
     }
     while (servedRequirements == 0.0) {
         this->setServedRequestsTriggered();
@@ -178,6 +184,8 @@ void MainWindow::analyzePressed(void)
         this->setMaxQueueLengthTriggered();
         queueLength = this->settings.value("queueLength", 0).toInt();
     }
+
+    this->setSpinBoxValue();
 
     QVector<unsigned> personalCount(staffNumber);
     std::iota(personalCount.begin(), personalCount.end(), 1);
@@ -198,6 +206,23 @@ void MainWindow::analyzePressed(void)
             unservedReqArr.append(predicts[1]);
             queueLenArr.append(predicts[2]);
         }
+    }
+    for(auto&& servedReqByShift : servedReqArr)
+    {
+        QVector<double> reqCostByStaffCount;
+        for(auto&& servedReqByStaffCount : servedReqByShift)
+        {
+            reqCostByStaffCount.append(servedReqByStaffCount * requestCost);
+        }
+        reqCostArr.append(reqCostByStaffCount);
+    }
+    for(size_t i = 0; i < 21; i++){
+        QVector<double> staffCostByShift;
+        for(auto&& personalCountByShift : personalCount)
+        {
+            staffCostByShift.append(personalCountByShift * channelCost);
+        }
+        staffCostArr.append(staffCostByShift);
     }
 
     this->ui->graphBox->setEnabled(true);
@@ -231,6 +256,12 @@ void MainWindow::graphTypeChanged(void)
     case 2:
         data = this->queueLenArr[index];
         break;
+    case 3:
+        data = this->reqCostArr[index];
+        break;
+    case 4:
+        data = this->staffCostArr[index];
+        break;
     }
     delete this->customPlot;
     this->customPlot = new QCustomPlot();
@@ -258,6 +289,12 @@ void MainWindow::additionalGraphChanged(QComboBox *obj)
         
         case 3:
             data = this->queueLenArr[index];
+            break;
+        case 4:
+            data = this->reqCostArr[index];
+            break;
+        case 5:
+            data = this->staffCostArr[index];
             break;
         }
         this->plotGraph(this->customPlot, obj->currentText(), data);
@@ -312,6 +349,17 @@ void MainWindow::setHourlyPaymentTriggered(void)
                                           2147483647, 2, &ok);
     if (ok) {
         this->settings.setValue("channelCost", cost);
+        this->settings.sync();
+    }
+};
+
+void MainWindow::setRequestCostTriggered(void)
+{
+    bool ok;
+    double cost = QInputDialog::getDouble(this, "Hourly payment", "Enter hourly payment", 0, 0,
+                                          2147483647, 2, &ok);
+    if (ok) {
+        this->settings.setValue("requestCost", cost);
         this->settings.sync();
     }
 };
@@ -397,7 +445,7 @@ void MainWindow::showChartTriggered(ChartType type)
 
 void MainWindow::setPlotSettings(QCustomPlot *customPlot)
 {
-    customPlot->setMinimumHeight(340);
+    customPlot->setMinimumHeight(325);
     customPlot->setMaximumHeight(360);
     customPlot->setMinimumWidth(1240);
 

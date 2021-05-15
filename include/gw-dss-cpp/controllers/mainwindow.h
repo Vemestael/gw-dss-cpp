@@ -52,6 +52,8 @@ private:
     QVector<QVector<double>> servedReqArr;
     QVector<QVector<double>> unservedReqArr;
     QVector<QVector<double>> queueLenArr;
+    QVector<QVector<double>> reqCostArr;
+    QVector<QVector<double>> staffCostArr;
     QCustomPlot *customPlot;
 
     // window preparing
@@ -83,6 +85,7 @@ private:
     // triggered menu handlers
     void setDbPathTriggered(void);
     void setHourlyPaymentTriggered(void);
+    void setRequestCostTriggered(void);
     void setServedRequestsTriggered(void);
     void setStaffNumberTriggered(void);
     void setMaxQueueLengthTriggered(void);
