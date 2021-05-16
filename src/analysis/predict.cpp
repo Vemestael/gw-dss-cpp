@@ -9,7 +9,7 @@ QVector<QVector<double>> Predict::getCharacteristics(QVector<unsigned> channelCo
     for (auto &&channelCount : channelCountArr) {
         qtm::qtm qm(channelCount, queueCount, la, mu, nu, n);
         qm.calc_final_states();
-        countServedReqArr.append(qtm::qtm_data::calc_avg_count_served_req(qm));
+        countServedReqArr.append(qtm::qtm_data::calc_avg_count_served_req(qm) * 8);
         countUnservedReqArr.append(qtm::qtm_data::calc_avg_count_unserved_req(qm));
         avgQueueArr.append(qtm::qtm_data::calc_avg_queue(qm));
     }

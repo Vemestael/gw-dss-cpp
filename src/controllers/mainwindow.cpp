@@ -185,6 +185,12 @@ void MainWindow::analyzePressed(void)
         queueLength = this->settings.value("queueLength", 0).toInt();
     }
 
+    servedReqArr.clear();
+    unservedReqArr.clear();
+    queueLenArr.clear();
+    reqCostArr.clear();
+    staffCostArr.clear();
+
     this->setSpinBoxValue();
 
     QVector<unsigned> personalCount(staffNumber);
