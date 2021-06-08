@@ -131,5 +131,5 @@ endif()
 # ====================================================================================================
 
 add_custom_target(make-lupdate 
-    COMMAND lupdate ${CMAKE_CURRENT_SOURCE_DIR}/include/ ${CMAKE_CURRENT_SOURCE_DIR}/src/ -ts ${TS_FILES}
+    COMMAND lupdate ${CMAKE_CURRENT_SOURCE_DIR}/include/ ${CMAKE_CURRENT_SOURCE_DIR}/src/ -noobsolete -ts ${TS_FILES}
 )
