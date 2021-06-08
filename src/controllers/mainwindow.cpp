@@ -248,31 +248,39 @@ void MainWindow::graphTypeChanged(void)
     size_t index = (dayBoxIndex + 1) * (shiftBoxIndex + 1)  - 1;
 
     QVector<double> data;
-    QString name = this->ui->graphBox->currentText();
+    QString legendName = this->ui->graphBox->currentText();
+    QString graphName;
     switch (graphBoxIndex)
     {
     case 0:
         data = this->servedReqArr[index];
+        graphName = tr("Served requests count");
         break;
     
     case 1:
         data = this->unservedReqArr[index];
+        graphName = tr("Unserved requests count");
         break;
     
     case 2:
         data = this->queueLenArr[index];
+        graphName = tr("Queue length");
         break;
+
     case 3:
         data = this->reqCostArr[index];
+        graphName = tr("Revenue from served requests");
         break;
+
     case 4:
         data = this->staffCostArr[index];
+        graphName = tr("Staff costs");
         break;
     }
     delete this->customPlot;
     this->customPlot = new QCustomPlot();
     this->setPlotSettings(this->customPlot);
-    this->plotGraph(this->customPlot, name, data);
+    this->plotGraph(this->customPlot, graphName, legendName, data);
     QGraphicsScene *scene = new QGraphicsScene();
     scene->addWidget(this->customPlot);
     this->ui->graphicsView->setScene(scene);
@@ -303,7 +311,7 @@ void MainWindow::additionalGraphChanged(QComboBox *obj)
             data = this->staffCostArr[index];
             break;
         }
-        this->plotGraph(this->customPlot, obj->currentText(), data);
+        this->plotGraph(this->customPlot, "", obj->currentText(), data);
         this->customPlot->replot(QCustomPlot::rpQueuedRefresh);
     }
 };
@@ -461,11 +469,22 @@ void MainWindow::setPlotSettings(QCustomPlot *customPlot)
     customPlot->xAxis->grid()->setVisible(true);
     customPlot->yAxis->grid()->setSubGridVisible(true);
 
+    customPlot->xAxis->setLabel(tr("Staff number"));
+
+    customPlot->xAxis2->setVisible(true);
+    customPlot->xAxis2->setTickLabels(false);
+    QFont font("sans", 14);
+    customPlot->xAxis2->setLabelFont(font);
+
     customPlot->legend->setVisible(true);
 };
 
-void MainWindow::plotGraph(QCustomPlot *customPlot, QString const &name, QVector<double> data)
+void MainWindow::plotGraph(QCustomPlot *customPlot, QString const &graphName, QString const &legendName, QVector<double> data)
 {
+    if (graphName != "") {
+        customPlot->xAxis2->setLabel(graphName);
+    }
+
     QVector<QCPGraphData> graphData;
     for (size_t i = 0; i < data.length(); ++i) {
         graphData.append({double(i + 1), data[i]});
@@ -491,5 +510,5 @@ void MainWindow::plotGraph(QCustomPlot *customPlot, QString const &name, QVector
             graph->setPen(QPen(Qt::black));
             break;
     }
-    graph->setName(name);
+    graph->setName(legendName);
 };

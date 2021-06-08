@@ -94,7 +94,7 @@ private:
 
     // plot handlers
     void setPlotSettings(QCustomPlot *customPlot);
-    void plotGraph(QCustomPlot *customPlot, QString const &name, QVector<double> data);
+    void plotGraph(QCustomPlot *customPlot, QString const &graphName , QString const &legendName, QVector<double> data);
 };
 
 template<typename spinBox>
