@@ -73,7 +73,7 @@
     </message>
     <message>
         <location filename="../controllers/chartwindow.cpp" line="22"/>
-        <location filename="../controllers/mainwindow.cpp" line="362"/>
+        <location filename="../controllers/mainwindow.cpp" line="424"/>
         <source>Unable to install language</source>
         <translation>Unable to install language</translation>
     </message>
@@ -83,14 +83,14 @@
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../controllers/mainwindow.cpp" line="129"/>
-        <location filename="../controllers/mainwindow.cpp" line="158"/>
+        <location filename="../controllers/mainwindow.cpp" line="130"/>
+        <location filename="../controllers/mainwindow.cpp" line="159"/>
         <source>Empty dataset</source>
         <translation>Empty dataset</translation>
     </message>
     <message>
-        <location filename="../controllers/mainwindow.cpp" line="189"/>
-        <location filename="../controllers/mainwindow.cpp" line="389"/>
+        <location filename="../controllers/mainwindow.cpp" line="203"/>
+        <location filename="../controllers/mainwindow.cpp" line="451"/>
         <source>Empty dataset for the selected date range</source>
         <translation>Empty dataset for the selected date range</translation>
     </message>
@@ -103,268 +103,318 @@
         <translation>DSS</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="369"/>
+        <location filename="../view/mainwindow.ui" line="603"/>
         <source>For all time</source>
         <translation>For all time</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="394"/>
+        <location filename="../view/mainwindow.ui" line="628"/>
         <source>For last year</source>
         <translation>For last year</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="607"/>
+        <location filename="../view/mainwindow.ui" line="247"/>
         <source>Set input characteristics</source>
         <translation>Set input characteristics</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="322"/>
+        <location filename="../view/mainwindow.ui" line="146"/>
         <source>Select a time frame for analysis</source>
         <translation>Select a time frame for analysis</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="77"/>
+        <location filename="../view/mainwindow.ui" line="1092"/>
         <source>Or define your span:</source>
         <translation>Or define your span:</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="102"/>
-        <location filename="../view/mainwindow.ui" line="146"/>
+        <location filename="../view/mainwindow.ui" line="1117"/>
+        <location filename="../view/mainwindow.ui" line="1161"/>
         <source>yyyy-dd-MM</source>
         <translation>yyyy-dd-MM</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="121"/>
+        <location filename="../view/mainwindow.ui" line="1136"/>
         <source>—</source>
         <translation>—</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="657"/>
+        <location filename="../view/mainwindow.ui" line="675"/>
         <source>Analyze</source>
         <translation>Analyze</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="660"/>
+        <location filename="../view/mainwindow.ui" line="678"/>
         <source>Return</source>
         <translation>Return</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="480"/>
+        <location filename="../view/mainwindow.ui" line="1013"/>
         <source>For last 6 months</source>
         <translation>For last 6 months</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="505"/>
+        <location filename="../view/mainwindow.ui" line="1038"/>
         <source>For last 3 months</source>
         <translation>For last 3 months</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="530"/>
+        <location filename="../view/mainwindow.ui" line="1063"/>
         <source>For last month</source>
         <translation>For last month</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1124"/>
+        <location filename="../view/mainwindow.ui" line="1211"/>
         <source>Menu</source>
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1136"/>
+        <location filename="../view/mainwindow.ui" line="1224"/>
         <source>Language</source>
         <translation>Language</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1144"/>
+        <location filename="../view/mainwindow.ui" line="1232"/>
         <source>Chart</source>
         <translation>Chart</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1158"/>
+        <location filename="../view/mainwindow.ui" line="1245"/>
         <source>Set db path</source>
         <translation>Set db path</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="196"/>
-        <location filename="../view/mainwindow.ui" line="1169"/>
+        <location filename="../view/mainwindow.ui" line="282"/>
+        <location filename="../view/mainwindow.ui" line="1256"/>
         <source>Set hourly payment</source>
         <translation>Set hourly payment</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="559"/>
-        <location filename="../view/mainwindow.ui" line="1227"/>
+        <location filename="../view/mainwindow.ui" line="74"/>
+        <location filename="../view/mainwindow.ui" line="1314"/>
         <source>Set count served requests/h</source>
         <translation>Set count served requests/h</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="423"/>
-        <location filename="../view/mainwindow.ui" line="1238"/>
-        <source>Set staff number</source>
-        <translation>Set staff number</translation>
-    </message>
-    <message>
-        <location filename="../view/mainwindow.ui" line="250"/>
-        <location filename="../view/mainwindow.ui" line="1249"/>
+        <location filename="../view/mainwindow.ui" line="902"/>
+        <location filename="../view/mainwindow.ui" line="1336"/>
         <source>Set max queue length</source>
         <translation>Set max queue length</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="763"/>
+        <location filename="../view/mainwindow.ui" line="402"/>
         <source>Week Day:</source>
         <translation>Week Day:</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="795"/>
+        <location filename="../view/mainwindow.ui" line="434"/>
         <source>Monday</source>
         <translation>Monday</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="800"/>
+        <location filename="../view/mainwindow.ui" line="439"/>
         <source>Tuesday</source>
         <translation>Tuesday</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="805"/>
+        <location filename="../view/mainwindow.ui" line="444"/>
         <source>Wednesday</source>
         <translation>Wednesday</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="810"/>
+        <location filename="../view/mainwindow.ui" line="449"/>
         <source>Thursday</source>
         <translation>Thursday</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="815"/>
+        <location filename="../view/mainwindow.ui" line="454"/>
         <source>Friday</source>
         <translation>Friday</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="820"/>
+        <location filename="../view/mainwindow.ui" line="459"/>
         <source>Saturday</source>
         <translation>Saturday</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="825"/>
+        <location filename="../view/mainwindow.ui" line="464"/>
         <source>Sunday</source>
         <translation>Sunday</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="845"/>
+        <location filename="../view/mainwindow.ui" line="484"/>
         <source>Work shift:</source>
         <translation>Work shift:</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="701"/>
+        <location filename="../view/mainwindow.ui" line="330"/>
         <source>Graph type:</source>
         <translation>Graph type:</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="733"/>
-        <location filename="../view/mainwindow.ui" line="998"/>
-        <location filename="../view/mainwindow.ui" line="1068"/>
-        <location filename="../view/mainwindow.ui" line="1304"/>
+        <location filename="../view/mainwindow.ui" line="196"/>
+        <location filename="../view/mainwindow.ui" line="1325"/>
+        <source>Set maximum staff number</source>
+        <translation>Set maximum staff number</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="362"/>
+        <location filename="../view/mainwindow.ui" line="759"/>
+        <location filename="../view/mainwindow.ui" line="839"/>
+        <location filename="../view/mainwindow.ui" line="1391"/>
         <source>Nserved(m)</source>
         <translation>Nserved(m)</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="738"/>
-        <location filename="../view/mainwindow.ui" line="1003"/>
-        <location filename="../view/mainwindow.ui" line="1073"/>
-        <location filename="../view/mainwindow.ui" line="1309"/>
+        <location filename="../view/mainwindow.ui" line="367"/>
+        <location filename="../view/mainwindow.ui" line="764"/>
+        <location filename="../view/mainwindow.ui" line="844"/>
+        <location filename="../view/mainwindow.ui" line="1396"/>
         <source>Nunserved(m)</source>
         <translation>Nunserved(m)</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="743"/>
-        <location filename="../view/mainwindow.ui" line="1008"/>
-        <location filename="../view/mainwindow.ui" line="1078"/>
-        <location filename="../view/mainwindow.ui" line="1314"/>
+        <location filename="../view/mainwindow.ui" line="372"/>
+        <location filename="../view/mainwindow.ui" line="769"/>
+        <location filename="../view/mainwindow.ui" line="849"/>
+        <location filename="../view/mainwindow.ui" line="1401"/>
         <source>L(m)</source>
         <translation>L(m)</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="916"/>
+        <location filename="../view/mainwindow.ui" line="377"/>
+        <location filename="../view/mainwindow.ui" line="774"/>
+        <location filename="../view/mainwindow.ui" line="854"/>
+        <source>C(Nserved)</source>
+        <translation>C(Nserved)</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="382"/>
+        <location filename="../view/mainwindow.ui" line="779"/>
+        <location filename="../view/mainwindow.ui" line="859"/>
+        <source>C(m)</source>
+        <translation>C(m)</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="555"/>
         <source>Add graph</source>
         <translation>Add graph</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="964"/>
+        <location filename="../view/mainwindow.ui" line="725"/>
         <source>Graph 1 type:</source>
         <translation>Graph 1 type:</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1034"/>
+        <location filename="../view/mainwindow.ui" line="805"/>
         <source>Graph 2 type:</source>
         <translation>Graph 2 type:</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1260"/>
+        <location filename="../view/mainwindow.ui" line="959"/>
+        <location filename="../view/mainwindow.ui" line="1406"/>
+        <source>Set request cost</source>
+        <translation>Set request cost</translation>
+    </message>
+    <message>
+        <location filename="../view/mainwindow.ui" line="1347"/>
         <source>Timescale load</source>
         <translation>Timescale load</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1271"/>
+        <location filename="../view/mainwindow.ui" line="1358"/>
         <source>Load by week days</source>
         <translation>Load by week days</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1282"/>
+        <location filename="../view/mainwindow.ui" line="1369"/>
         <source>Load by work shifts</source>
         <translation>Load by work shifts</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1293"/>
+        <location filename="../view/mainwindow.ui" line="1380"/>
         <source>Load by hours</source>
         <translation>Load by hours</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1180"/>
+        <location filename="../view/mainwindow.ui" line="1267"/>
         <source>Exit</source>
         <translation>Exit</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1189"/>
+        <location filename="../view/mainwindow.ui" line="1276"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1194"/>
+        <location filename="../view/mainwindow.ui" line="1281"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1205"/>
+        <location filename="../view/mainwindow.ui" line="1292"/>
         <source>Українська</source>
         <translation>Українська</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="1216"/>
+        <location filename="../view/mainwindow.ui" line="1303"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="877"/>
+        <location filename="../view/mainwindow.ui" line="516"/>
         <source>Shift 1</source>
         <translation>Shift 1</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="882"/>
+        <location filename="../view/mainwindow.ui" line="521"/>
         <source>Shift 2</source>
         <translation>Shift 2</translation>
     </message>
     <message>
-        <location filename="../view/mainwindow.ui" line="887"/>
+        <location filename="../view/mainwindow.ui" line="526"/>
         <source>Shift 3</source>
         <translation>Shift 3</translation>
     </message>
     <message>
-        <location filename="../controllers/mainwindow.cpp" line="299"/>
+        <location filename="../controllers/mainwindow.cpp" line="257"/>
+        <source>Served requests count</source>
+        <translation>Served requests count</translation>
+    </message>
+    <message>
+        <location filename="../controllers/mainwindow.cpp" line="262"/>
+        <source>Unserved requests count</source>
+        <translation>Unserved requests count</translation>
+    </message>
+    <message>
+        <location filename="../controllers/mainwindow.cpp" line="267"/>
+        <source>Queue length</source>
+        <translation>Queue length</translation>
+    </message>
+    <message>
+        <location filename="../controllers/mainwindow.cpp" line="272"/>
+        <source>Revenue from served requests</source>
+        <translation>Revenue from served requests</translation>
+    </message>
+    <message>
+        <location filename="../controllers/mainwindow.cpp" line="277"/>
+        <source>Staff costs</source>
+        <translation>Staff costs</translation>
+    </message>
+    <message>
+        <location filename="../controllers/mainwindow.cpp" line="350"/>
         <source>Open File</source>
         <translation>Open File</translation>
     </message>
     <message>
-        <location filename="../controllers/mainwindow.cpp" line="299"/>
+        <location filename="../controllers/mainwindow.cpp" line="350"/>
         <source>DB file (*.db *.sqlite)</source>
         <translation>DB file (*.db *.sqlite)</translation>
+    </message>
+    <message>
+        <location filename="../controllers/mainwindow.cpp" line="472"/>
+        <source>Staff number</source>
+        <translation>Staff number</translation>
     </message>
 </context>
 </TS>
