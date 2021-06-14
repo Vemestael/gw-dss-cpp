@@ -357,6 +357,9 @@
            <pointsize>16</pointsize>
           </font>
          </property>
+         <property name="currentIndex">
+          <number>2</number>
+         </property>
          <item>
           <property name="text">
            <string>Nserved(m)</string>

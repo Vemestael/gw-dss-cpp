@@ -254,27 +254,27 @@ void MainWindow::graphTypeChanged(void)
     {
     case 0:
         data = this->servedReqArr[index];
-        graphName = tr("Served requests count");
+        graphName = tr("Кількість заявок, що були обслуговані");
         break;
     
     case 1:
         data = this->unservedReqArr[index];
-        graphName = tr("Unserved requests count");
+        graphName = tr("Кількість заявок, що не були обслуговані");
         break;
     
     case 2:
         data = this->queueLenArr[index];
-        graphName = tr("Queue length");
+        graphName = tr("Довжина черги");
         break;
 
     case 3:
         data = this->reqCostArr[index];
-        graphName = tr("Revenue from served requests");
+        graphName = tr("Дохід від заявок, що були обслуговані");
         break;
 
     case 4:
         data = this->staffCostArr[index];
-        graphName = tr("Staff costs");
+        graphName = tr("Витрати на персонал");
         break;
     }
     delete this->customPlot;
@@ -469,7 +469,7 @@ void MainWindow::setPlotSettings(QCustomPlot *customPlot)
     customPlot->xAxis->grid()->setVisible(true);
     customPlot->yAxis->grid()->setSubGridVisible(true);
 
-    customPlot->xAxis->setLabel(tr("Staff number"));
+    customPlot->xAxis->setLabel(tr("Кількість співробітників"));
 
     customPlot->xAxis2->setVisible(true);
     customPlot->xAxis2->setTickLabels(false);
