@@ -5,7 +5,7 @@ gw-dss-cpp - simple tool that use queueing theory concepts to make predictions a
 ## Build
 
 1. First of all make sure you have installed successfully:
-* Qt Framework (Qt 5 or Qt 6) (see more [Open Source Qt Use](https://www.qt.io/download-open-source));
+* Qt Framework (Qt 6) (see more [Open Source Qt Use](https://www.qt.io/download-open-source));
 * Boost library (see more [Boost installation on Windows](https://www.boost.org/doc/libs/1_75_0/more/getting_started/windows.html) or [Boost installation on *nix](https://www.boost.org/doc/libs/1_75_0/more/getting_started/unix-variants.html)).
 
 2. Clone this project and then cd to the project folder;
@@ -14,16 +14,28 @@ gw-dss-cpp - simple tool that use queueing theory concepts to make predictions a
 ```
 $ git submodule init
 $ git submodule update --init --recursive
+
+OR
+
+$ task init
 ```
 
-4. Configure the project using CMake:
+1. Configure the project using CMake:
 ```
 $ cmake -B ./build -G <preferred generator> -DCMAKE_BUILD_TYPE=<Debug|Release>
+
+OR
+
+$ task configure_<debug|release> -- <preferred generator>
 ```
 
 5. Then run build command:
 ```
 $ cmake --build ./build --config <Debug|Release> --target <gw-dss-cpp|deployment|make-lupdate|all>
+
+OR
+
+$ tasl build_<debug|release> -- <gw-dss-cpp|deployment|make-lupdate|all>
 ```
 > As you can see, there are three available targets:
 > * gw-dss-cpp - build application independently;
